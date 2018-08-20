@@ -2,5 +2,11 @@
 <% if session[:user] == nil %>
  <p>No one is logged in.<p><a href="/login">Click here to log in.</a></p>
 <% else %>
-<p>Welcome back, <%= session[:user].name %></p>
+<p>Welcome back, <%= session[:user].username %></p>
 <% end %>
+<p>
+Change your avatar</p>
+<form class="" action="/account" method="post">
+  <input type="url" placeholder='Link to an image' name="avatar_url"><br>
+  <input type="submit" value="Update">
+</form>

@@ -1,2 +1,18 @@
-<h1>Welcome</h1>
-<a href="/signup">Click here to sign up</a> - <a href="/login">Or here to log in.</a>
+
+<% @posts.reverse.each do |p| %>
+<div class="post">
+  Posted by:
+  <% post_user = User.find_by(id: p.user_id) %>
+    <img class="avatar" src="<%= post_user.avatar_url %>">
+    <%= post_user.username %> at <%= p.created_at %>
+    <h2><%= p.title %></h2>
+    <img src='<%= p.image_url %>'>
+    <p>
+      <%= p.body %></p><br>
+      <form class="tagForm" action="index.html" method="post">
+        <input type="text" name="post_id" style="visibility: hidden;"><br>
+          <input type="text" placeholder="tag" name="tag"><br>
+        <input type="submit" value="Tag post">
+      </form>
+    </div>
+  <% end %>

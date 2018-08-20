@@ -10,3 +10,11 @@ class User < ActiveRecord::Base
     self.password_hash = @password
   end
 end
+
+class Post < ActiveRecord::Base
+
+end
+
+class Tag < ActiveRecord::Base
+
+end

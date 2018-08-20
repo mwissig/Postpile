@@ -5,6 +5,7 @@
     <title>Log in page</title>
     <link rel="stylesheet" type="text/css" href="main.css">
   <link href="https://fonts.googleapis.com/css?family=Oswald|Sigmar+One" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   </head>
   <body>
 <header>
@@ -14,11 +15,14 @@
     <li><a href="/signup">Sign up</a></li>
       <li><a href="/login">Log in</a></li>
       <% else %>
-            <li><a href="/account"> <%= session[:user].email %> </a></li>
+            <li><a href="/account"> <img class="avatar" src="<%= session[:user].avatar_url %>"> <%= session[:user].username %> </a></li>
+            <li><a href="/post">Post</a></li>
             <li><a href="/logout">Log out</a></li>
       <% end %>
 </ul>
 </header>
+<div class="container">
 <%= yield %>
+</div>
   </body>
 </html>
