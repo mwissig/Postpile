@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Log in page</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+  <link href="https://fonts.googleapis.com/css?family=Oswald|Sigmar+One" rel="stylesheet">
+  </head>
+  <body>
+<header>
+<ul>
+  <li><a href="/">Home</a></li>
+  <% if session[:user] == nil %>
+    <li><a href="/signup">Sign up</a></li>
+      <li><a href="/login">Log in</a></li>
+      <% else %>
+            <li><a href="/account"> <%= session[:user].email %> </a></li>
+            <li><a href="/logout">Log out</a></li>
+      <% end %>
+</ul>
+</header>
+<%= yield %>
+  </body>
+</html>
