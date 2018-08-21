@@ -18,7 +18,7 @@
         <div>
           <h2><%= p.title %>
       <% if session[:user].id == post_user.id %>
-<a href="/posts/<%= @post.id %>" name="_method" value="delete">Delete   <i class="fas fa-trash-alt"></i></a>
+<a href="/posts/<%= p.id %>" name="_method" value="delete">Delete<i class="fas fa-trash-alt"></i></a>
 
       <% end %>
           </h2>
