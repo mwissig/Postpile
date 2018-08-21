@@ -31,10 +31,12 @@ get '/posts/:id' do
    erb :posts
  end
 
- delete '/posts/:id' do
-       @id = params[:id]
-     Post.find(id: @id).destroy
-     redirect '../'
+
+   delete '/posts/:id' do
+   	@post = Post.find(params[:id])
+   	@post.destroy
+   	redirect '/'
+   end
  end
 
  get '/users/:id' do
