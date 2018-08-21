@@ -18,7 +18,6 @@
         <div>
           <h2><%= p.title %>
       <% if session[:user].id == post_user.id %>
-<a href="/posts/<%= p.id %>/delete" name="_method" value="delete"><i class="fas fa-trash-alt"></i></a>
 <form class="" action="/posts/<%= p.id %>/delete" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="delete">

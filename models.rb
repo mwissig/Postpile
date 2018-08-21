@@ -1,5 +1,7 @@
 require 'bcrypt'
+
 class User < ActiveRecord::Base
+  has_many :posts, dependent: :destroy
   include BCrypt
 
   def password
@@ -12,5 +14,5 @@ class User < ActiveRecord::Base
 end
 
 class Post < ActiveRecord::Base
-
+  belongs_to :user
 end

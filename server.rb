@@ -87,6 +87,7 @@ end
 get '/account' do
   @users = User.all
   @posts = Post.all
+
   erb :account
 end
 
@@ -124,19 +125,15 @@ get '/deleteme' do
   erb :deleteme
 end
 
-# delete '/deleteme/delete' do
-#   @posts = Post.all
-#   @current_user = User.find(session[:user].id)
-#   @current_user.destroy
-#   @user_posts = Post.find_by(user_id: @current_user.id)
-#   @posts.each do |p|
-#   @post_user = User.find_by(id: p.user_id)
-#     if @current_user.id == @post_user.id
-#       p.destroy
-#     end
-#     session[:user] = nil
-#     redirect :signup
-#   end
-# end
+delete '/deleteme/delete' do
+  @posts = Post.all
+
+  @current_user = User.find(session[:user].id)
+  @current_user.destroy
+  # @user_posts = @posts.find_by(user_id: @current_user.id)
+  # @user_posts.each {|p| p.destroy }
+    session.clear
+    redirect '/logout'
+  end
 
 require './models'
