@@ -4,7 +4,7 @@
 <% else %>
 <div class="accountinfo">
   <h1>Your Account</h1>
-<p>Welcome back, <%= session[:user].username %></p>
+<p>Welcome back, <a href="users/<%= post_user.id %>"><%= session[:user].username %></p></a>
 <p>Name: <%= session[:user].first_name %> <%= session[:user].last_name %></p>
 <p>Date of birth: <%= session[:user].birthday %></p>
   <p>Email: <%= session[:user].email %></p>
@@ -41,8 +41,8 @@ Your posts</h2>
                 </div>
                 <div>
                   Posted by:
-                    <img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="images/gen.png"'>
-                    <%= post_user.username %>
+                    <a href="/users/<%= post_user.id %>"><img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="images/gen.png"'>
+                    <%= post_user.username %></a>
                     at
                     <%= p.created_at %>
                   </div>

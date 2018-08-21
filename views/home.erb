@@ -21,8 +21,8 @@
         </div>
         <div>
           Posted by:
-            <img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="images/gen.png"'>
-            <%= post_user.username %>
+            <a href="users/<%= post_user.id %>"><img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="images/gen.png"'>
+            <%= post_user.username %></a>
             at
             <%= p.created_at %>
           </div>
