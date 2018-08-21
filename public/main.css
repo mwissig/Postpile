@@ -129,7 +129,9 @@ h2 {
   font-size: 14px;
   box-shadow: 1px 1px .5px black;
 }
-
+.post a {
+  color: black;
+}
 .post div {
   padding: 12px;
 }
