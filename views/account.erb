@@ -47,13 +47,9 @@ Your posts</h2>
                     <%= p.created_at %>
                   </div>
                   <div>
-                    <% if post_user.id != session[:user].id %>
-                    <form style="display: inline;" class="like" action="/" method="post">
-                      <input type="hidden" name="id" value="<%= p.id %>">
-                      <input type="submit" onclick="hide()" value="Like">
-                    </form>
-                    <% end %>
-                    <p><i class="fas fa-heart"></i> <%= p.likes %></p>
+                    <p><i class="fas fa-heart"></i> <%= p.likes %>
+                        <a href="posts/<%= p.id %>">Permalink</a>
+                     </p>
                   </div>
                 </div>
                 <script>

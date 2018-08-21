@@ -32,9 +32,10 @@
               <input type="hidden" name="id" value="<%= p.id %>">
               <input type="submit" onclick="hide()" value="I love this">
         <i class="fas fa-heart"></i> <%= p.likes %>
+        <a href="posts/<%= p.id %>">Permalink</a>
             </form>
             <% else %>
-            <i class="fas fa-heart"></i> <%= p.likes %>
+            <i class="fas fa-heart"></i> <%= p.likes %> <a href="posts/<%= p.id %>">Permalink</a>
             <% end %>
 
           </div>
