@@ -14,11 +14,11 @@
       <% if session[:user] != nil %>
                     <% this_user = User.find_by(id: @id) %>
       <h2>
-                    <%= this_user.id %>'s posts</h2>
+                    <%= this_user.username %>'s posts</h2>
 
       <% @posts.reverse.each do |p| %>
 
-                <% if @id == this_user.id %>
+                <% if @id == p.user_id %>
                 <div class="post" id="<%= p.id %>">
                   <div>
                     <h2><%= p.title %>
