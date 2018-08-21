@@ -22,6 +22,13 @@ post '/' do
   redirect '/'
 end
 
+get '/posts/:id' do
+  @users = User.all
+  @posts = Post.all
+   @id = params[:id]
+   erb :posts
+ end
+
 get '/login' do
   erb :login
 end

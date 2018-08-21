@@ -30,7 +30,7 @@
             <% if post_user.id != session[:user].id %>
             <form style="display: inline;" class="like" action="/" method="post">
               <input type="hidden" name="id" value="<%= p.id %>">
-              <input type="submit" onclick="hide()" value="Like">
+              <input type="submit" onclick="hide()" value="I love this">
         <i class="fas fa-heart"></i> <%= p.likes %>
             </form>
             <% else %>

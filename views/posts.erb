@@ -1,0 +1,56 @@
+<% if session[:user] != nil %>
+
+<% p = Post.find_by(id: @id) %>
+        <% post_user = User.find_by(id: p.user_id) %>
+<div class="post" id="<%= p.id %>">
+  <div>
+    <h2><%= p.title %>
+<% if session[:user].id == post_user.id %>
+(your post)
+<% end %>
+    </h2>
+  </div>
+  <% if p.image_url != "" %>
+    <% @height = 400 %>
+    <% else %>
+      <% @height = 0 %><% end %>
+      <div style="background-image: url('<%= p.image_url %>'); height: <%= @height %>px;"></div>
+      <div>
+        <p>
+          <%= p.body %></p>
+      </div>
+      <div>
+        Posted by:
+          <img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="images/gen.png"'>
+          <%= post_user.username %>
+          at
+          <%= p.created_at %>
+        </div>
+        <div>
+          <% if post_user.id != session[:user].id %>
+          <form style="display: inline;" class="like" action="/" method="post">
+            <input type="hidden" name="id" value="<%= p.id %>">
+            <input type="submit" onclick="hide()" value="I love this">
+      <i class="fas fa-heart"></i> <%= p.likes %>
+          </form>
+          <% else %>
+          <i class="fas fa-heart"></i> <%= p.likes %>
+          <% end %>
+
+        </div>
+      </div>
+      <script>
+      var x = <%= @posts.reverse.first.id %>;
+      </script>
+    <% end %>
+<% else %><h1 class="pagetitle">Postpile</h1>
+Log in to see more posts like these!
+<marquee style="width: 100%;">
+<% @posts.reverse.each do |p| %>
+  <% if p.image_url != "" %>
+<img src='<%= p.image_url %>' onerror='this.src="http://i65.tinypic.com/28txgzr.jpg"' style="display: inline; height: 400px; width: auto; opacity: .8;">
+  <% end %>
+
+<% end %>
+ </marquee>
+<% end %>
