@@ -7,9 +7,6 @@ Post.create(
 image_url: 'test.jpg'
   )
 
-Tags.create(
-  post_id: 1
-)
 
   3.times do
     User.create(
