@@ -10,7 +10,7 @@
   <%= @id %>
 <% p = @posts.find_by(id: @id) %>
 <%= p.title %>
-
+          <% post_user = User.find_by(id: p.user_id) %>
 
 <div class="post" id="<%= p.id %>">
   <div>
