@@ -31,8 +31,8 @@ get '/posts/:id' do
 
  post '/posts/:id' do
        @id = params[:id]
-     Post.find(@id).destroy
-     redirect '/'
+     Post.find(id: @id).destroy
+     redirect '../'
  end
 
  get '/users/:id' do
