@@ -31,7 +31,7 @@ get '/posts/:id' do
 
 
 delete '/posts/:id' do
-   	@post = Post.find(params[:id])
+   	@post = Post.find(id: params[:id])
    	@post.destroy
    	redirect '/'
  end
