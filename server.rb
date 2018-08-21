@@ -124,11 +124,19 @@ get '/deleteme' do
   erb :deleteme
 end
 
-get '/delete' do
-  User.find(session[:user].id).destroy
-  Post.delete_all(user_id: session[:user].id)
-    session[:user] = nil
-    redirect :signup
-end
+# delete '/deleteme/delete' do
+#   @posts = Post.all
+#   @current_user = User.find(session[:user].id)
+#   @current_user.destroy
+#   @user_posts = Post.find_by(user_id: @current_user.id)
+#   @posts.each do |p|
+#   @post_user = User.find_by(id: p.user_id)
+#     if @current_user.id == @post_user.id
+#       p.destroy
+#     end
+#     session[:user] = nil
+#     redirect :signup
+#   end
+# end
 
 require './models'
