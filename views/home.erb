@@ -31,9 +31,10 @@
             <form style="display: inline;" class="like" action="/" method="post">
               <input type="hidden" name="id" value="<%= p.id %>">
               <input type="submit" onclick="hide()" value="Like">
+        <i class="fas fa-heart"></i> <%= p.likes %>
             </form>
             <% end %>
-            <p><i class="fas fa-heart"></i> <%= p.likes %></p>
+
           </div>
         </div>
         <script>
