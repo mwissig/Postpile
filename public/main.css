@@ -114,7 +114,10 @@ h2 {
   height: 50px;
   border-radius: 50%;
 }
-
+.like input{
+  font-size: 12px;
+    padding: 3px 5px;
+}
 .post {
   display: grid;
   grid-template-rows: 3em auto auto 70px 3.5em;
