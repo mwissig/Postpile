@@ -157,3 +157,10 @@ h2 {
 .hidden {
   visibility: hidden;
 }
+.likesgrid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+.likesgrid div:nth-child(2) {
+  text-align: right;
+}

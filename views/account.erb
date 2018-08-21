@@ -46,14 +46,17 @@ Your posts</h2>
                     at
                     <%= p.created_at %>
                   </div>
-                  <div>
+                  <div class="likesgrid">
+                    <div>
                     <% if post_user.id != session[:user].id %>
                     <form class="like" action="/" method="post">
                       <input type="hidden" name="id" value="<%= p.id %>">
                       <input type="submit" onclick="hide()" value="Like">
                     </form>
                     <% end %>
-                    <%= p.likes %>
+                  </div><div>
+                    <p><i class="fas fa-heart"></i> <%= p.likes %></p>
+                  </div>
                   </div>
                 </div>
                 <script>
