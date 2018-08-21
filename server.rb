@@ -30,10 +30,10 @@ get '/posts/:id' do
  end
 
 
-delete '/posts/:id' do
-   	@deletepost = Post.find_by(id: params[:id])
-   	@deletepost.destroy
-   	redirect '/'
+ delete '/posts/:id' do
+ 	@post = Post.find(params[:id])
+ 	@post.destroy
+ 	redirect '/'
  end
 
  get '/users/:id' do
