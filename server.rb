@@ -23,9 +23,9 @@ post '/' do
 end
 
 get '/posts/:id' do
-  @users = User.all
-  @posts = Post.all
    @id = params[:id]
+   @users = User.all
+   @posts = Post.all
    erb :posts
  end
 
