@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>PostPile</title>
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300|Hammersmith+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16"/>
+
+  </head>
+  <body>
+      <% if session[:user] != nil %>
+      <h2>
+      Your posts</h2>
+
+      <% @posts.reverse.each do |p| %>
+                <% post_user = User.find_by(id: p.user_id) %>
+                <% if @id == post_user.id %>
+                <div class="post" id="<%= p.id %>">
+                  <div>
+                    <h2><%= p.title %>
+              <% if session[:user].id == post_user.id %>
+              (your post)
+              <% end %>
+                    </h2>
+                  </div>
+                  <% if p.image_url != "" %>
+                    <% @height = 400 %>
+                    <% else %>
+                      <% @height = 0 %><% end %>
+                      <div style="background-image: url('<%= p.image_url %>'); height: <%= @height %>px;"></div>
+                      <div>
+                        <p>
+                          <%= p.body %></p>
+                      </div>
+                      <div>
+                        Posted by:
+                          <img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="images/gen.png"'>
+                          <%= post_user.username %>
+                          at
+                          <%= p.created_at %>
+                        </div>
+                        <div>
+                          <p><i class="fas fa-heart"></i> <%= p.likes %>
+                              <a href="posts/<%= p.id %>">Permalink</a>
+                           </p>
+                        </div>
+                      </div>
+                      <script>
+                      var x = <%= @posts.reverse.first.id %>;
+                      </script>
+            <% end %>
+            <% end %>
+<% else %>
+You need to be logged in to view this post.
+<% end %>
+      </body>
+    </html>

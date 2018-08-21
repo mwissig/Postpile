@@ -29,6 +29,13 @@ get '/posts/:id' do
    erb :posts
  end
 
+ get '/users/:id' do
+    @id = params[:id]
+    @users = User.all
+    @posts = Post.all
+    erb :users
+  end
+
 get '/login' do
   erb :login
 end

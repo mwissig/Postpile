@@ -11,6 +11,7 @@
 
   </head>
   <body>
+      <% if session[:user] != nil %>
     <% p = @posts.find_by(id: @id) %>
       <% post_user = User.find_by(id: p.user_id) %>
       <div class="post" id="<%= p.id %>">
@@ -47,6 +48,8 @@
 
               </div>
             </div>
-
+<% else %>
+You need to be logged in to view this post.
+<% end %>
       </body>
     </html>
