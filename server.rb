@@ -29,6 +29,12 @@ get '/posts/:id' do
    erb :posts
  end
 
+ post '/posts/:id' do
+       @id = params[:id]
+     Post.find(@id).destroy
+     redirect '/'
+ end
+
  get '/users/:id' do
     @id = params[:id]
     @users = User.all

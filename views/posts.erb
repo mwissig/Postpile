@@ -18,7 +18,11 @@
         <div>
           <h2><%= p.title %>
       <% if session[:user].id == post_user.id %>
-      (your post)
+      <form style="display: inline;" class="delete" action="/posts" method="post">
+        <input type="hidden" name="id" value="<%= @id %>">
+        <input type="submit" value="Delete Post">
+  <i class="fas fa-trash-alt"></i>
+      </form>
       <% end %>
           </h2>
         </div>
