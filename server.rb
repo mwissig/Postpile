@@ -8,6 +8,8 @@ require 'active_record'
 # set :database, 'sqlite3:rumblr.sqlite3'
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 
+use Rack::MethodOverride
+
 get '/' do
   @users = User.all
   @posts = Post.all
@@ -29,7 +31,7 @@ get '/posts/:id' do
    erb :posts
  end
 
- post '/posts/:id' do
+ delete '/posts/:id' do
        @id = params[:id]
      Post.find(id: @id).destroy
      redirect '../'
