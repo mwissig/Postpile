@@ -28,7 +28,7 @@
           </div>
           <div>
             <% if post_user.id != session[:user].id %>
-            <form class="like" action="/" method="post">
+            <form style="display: inline;" class="like" action="/" method="post">
               <input type="hidden" name="id" value="<%= p.id %>">
               <input type="submit" onclick="hide()" value="Like">
             </form>
@@ -40,7 +40,7 @@
         var x = <%= @posts.reverse.first.id %>;
         </script>
       <% end %>
-<% else %>
+<% else %><h1 class="pagetitle">Postpile</h1>
 Log in to see more posts like these!
   <marquee style="width: 100%;">
 <% @posts.reverse.each do |p| %>
