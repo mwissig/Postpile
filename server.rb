@@ -4,9 +4,15 @@ require 'faker'
 require 'securerandom'
 enable :sessions
 
-require 'active_record'
-# set :database, 'sqlite3:rumblr.sqlite3'
-ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+configure :development do
+  set :database, 'sqlite3:rumblr.sqlite3'
+end
+
+configure :production do
+  require 'active_record'
+  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+end
+
 
 get '/' do
   @users = User.all
