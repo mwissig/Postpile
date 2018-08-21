@@ -8,8 +8,6 @@ require 'active_record'
 # set :database, 'sqlite3:rumblr.sqlite3'
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 
-use Rack::MethodOverride
-
 get '/' do
   @users = User.all
   @posts = Post.all
