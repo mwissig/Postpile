@@ -48,12 +48,12 @@ Your posts</h2>
                   </div>
                   <div>
                     <% if post_user.id != session[:user].id %>
-                    <form class="like" action="/" method="post">
+                    <form style="display: inline;" class="like" action="/" method="post">
                       <input type="hidden" name="id" value="<%= p.id %>">
                       <input type="submit" onclick="hide()" value="Like">
                     </form>
                     <% end %>
-                    Likes: <%= p.likes %>
+                    <p><i class="fas fa-heart"></i> <%= p.likes %></p>
                   </div>
                 </div>
                 <script>
