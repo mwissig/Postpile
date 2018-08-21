@@ -30,7 +30,7 @@ get '/posts/:id' do
  end
 
 
- post '/posts/:id/delete' do
+delete '/posts/:id/delete' do
  	@post = Post.find(params[:id])
  	@post.destroy
  	redirect '/'
