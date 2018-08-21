@@ -14,7 +14,3 @@ end
 class Post < ActiveRecord::Base
 
 end
-
-class Tag < ActiveRecord::Base
-
-end

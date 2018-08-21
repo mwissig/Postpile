@@ -1,9 +1,12 @@
 html {
-  background-image: url('cygnus.jpg');
-font-family: 'Oswald', sans-serif;
-  margin-left: 200px;
+  background-image: url('images/darkmatter.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Assistant', sans-serif;
   color: white;
   font-size: 20px;
+  margin: 0 auto;
 }
 
 input {
@@ -11,70 +14,146 @@ input {
   background-color: white;
   border-radius: 5px;
   margin: 5px;
-    font-size: 20px;
-font-family: 'Oswald', sans-serif;
-box-shadow: (1px 1px 1px black);
-border: none;
+  font-size: 20px;
+  font-family: 'Assistant', sans-serif;
+  box-shadow: 1px 1px .5px black;
+  border: none;
 }
-textarea  {
+
+textarea {
   padding: 5px 15px;
   background-color: white;
   border-radius: 5px;
   margin: 5px;
-    font-size: 20px;
-font-family: 'Oswald', sans-serif;
-box-shadow: (1px 1px 1px black);
-border: none;
-}
-input[type="submit"]  {
-  background-color: orange;
-  box-shadow: (2px 2px 2px black);
+  font-size: 20px;
+  font-family: 'Assistant', sans-serif;
+  box-shadow: 1px 1px .5px black;
   border: none;
 }
-input[type="submit"]:hover  {
+
+input[type="submit"] {
+  background-color: orange;
+  box-shadow: 1px 1px .5px black;
+  border: none;
+}
+
+input[type="submit"]:hover {
   background-color: white;
 }
+
 .tagForm input {
   font-size: 12px !important;
+  display: inline;
+  box-shadow: 1px 1px .5px black;
+  z-index: 11;
 }
+
 a, a:visited {
-  color:white;
+  color: white;
   text-decoration: none;
 }
+
 a:hover {
   color: orange;
 }
+
 header li {
   display: inline;
   padding: 5px 15px;
 }
+
 header {
   position: fixed;
   left: 0;
   top: 0;
   height: 80px;
   width: 100%;
-  background-color: black;
+  background-color: rgb(6, 0, 14);
+  box-shadow: 1px 1px .5px black;
 }
+
+h1, h2, h3 {
+  margin-top: 0px;
+  font-family: 'Hammersmith One', sans-serif;
+}
+
 h1 {
-  margin-top: 2em;
-  font-family: 'Sigmar One', cursive;
   font-weight: normal;
-  text-shadow: (2px 2px 2px black);
+  text-shadow: 1px 1px .5px black;
 }
+
+h2 {
+  margin: 0 !important;
+}
+
 .container {
   width: 100%;
   height: 100%;
-  margin-top: 150px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.innercontainer {
+  margin-top: 120px;
+}
+
 .avatar {
   width: 50px;
   height: 50px;
   border-radius: 50%;
 }
+
 .post {
-  background-color: gray;
-  margin: 5px;
+  display: grid;
+  grid-template-rows: 3em auto auto 70px 3.5em;
+  background-color: white;
+  border-radius: 5px;
+  width: 40vw;
+  color: black;
+  margin: 10px;
+  font-size: 14px;
+  box-shadow: 1px 1px .5px black;
+}
+
+.post div {
+  padding: 12px;
+}
+
+.post div:nth-child(1) {
+  background-color:  rgb(6, 0, 14);
+  color: white;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.post div:nth-child(2) {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.post div:nth-child(3) {
+  text-align: justify;
+}
+
+.post div:nth-child(4) {
+  background-color: rgb(185, 223, 255);
+}
+
+.post div:nth-child(4) img {
+  border: 2px solid black;
+}
+
+.accountinfo {
+  position: fixed;
+  top: 120px;
+  left: 50px;
+  background-color: rgb(6, 0, 14);
   padding: 5px;
-  max-width: 50vw;
+  border-radius: 5px;
+    box-shadow: 1px 1px .5px black;
+}
+.hidden {
+  visibility: hidden;
 }

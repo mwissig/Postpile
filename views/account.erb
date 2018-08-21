@@ -1,12 +1,55 @@
-<h1>My Account</h1>
+
 <% if session[:user] == nil %>
- <p>No one is logged in.<p><a href="/login">Click here to log in.</a></p>
+ <p>You must be logged in to access this page.<p><a href="/login">Click here to log in.</a></p>
 <% else %>
+<div class="accountinfo">
+  <h1>Your Account</h1>
 <p>Welcome back, <%= session[:user].username %></p>
-<% end %>
+<p>Name: <%= session[:user].first_name %> <%= session[:user].last_name %></p>
+<p>Date of birth: <%= session[:user].birthday %></p>
+  <p>Email: <%= session[:user].email %></p>
 <p>
-Change your avatar</p>
+Change your avatar  <i class="fas fa-pencil-alt"></i></p>
 <form class="" action="/account" method="post">
   <input type="url" placeholder='Link to an image' name="avatar_url"><br>
   <input type="submit" value="Update">
 </form>
+<a href="/deleteme">Delete your account <i class="far fa-times-circle"></i></a>
+</div>
+<h2>
+Your posts</h2>
+
+<% @posts.reverse.each do |p| %>
+          <% post_user = User.find_by(id: p.user_id) %>
+          <% if session[:user].id == post_user.id %>
+  <div class="post" id="<%= p.id %>">
+    <div>
+      <h2><%= p.title %>
+      </h2>
+    </div>
+    <% if p.image_url != "" %>
+      <% @height = 400 %>
+      <% else %>
+        <% @height = 0 %><% end %>
+        <div style="background-image: url('<%= p.image_url %>'); height: <%= @height %>px;"></div>
+        <div>
+          <p>
+            <%= p.body %></p>
+        </div>
+        <div>
+          Posted by:
+            <img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="images/gen.png"'>
+            <%= post_user.username %>
+            at
+            <%= p.created_at %>
+          </div>
+          <div>
+  likes
+          </div>
+        </div>
+        <script>
+        var x = <%= @posts.reverse.first.id %>;
+        </script>
+      <% end %>
+      <% end %>
+<% end %>

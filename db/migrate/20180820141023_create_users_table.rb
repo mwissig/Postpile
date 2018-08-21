@@ -5,6 +5,9 @@ class CreateUsersTable < ActiveRecord::Migration[5.2]
     create_table :users do |t|
       t.string :username
       t.string :avatar_url
+      t.string :first_name
+      t.string :last_name
+      t.string :birthday
       t.string :email
       t.string :password_hash
       t.datetime :created_at

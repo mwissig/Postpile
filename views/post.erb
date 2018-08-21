@@ -1,3 +1,4 @@
+  <% if session[:user] != nil %>
 <h1>post</h1>
 <form class="" action="/post" method="post">
   <input type="text" placeholder="title" name="title"><br>
@@ -5,3 +6,6 @@
   <textarea type="text" placeholder='body' name="body"></textarea><br>
   <input type="submit" value="post">
 </form>
+<% else %>
+You must be logged in to post.
+<% end %>

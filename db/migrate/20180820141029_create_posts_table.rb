@@ -5,6 +5,7 @@ class CreatePostsTable < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :body
       t.string :image_url
+      t.integer :likes
       t.datetime :created_at
       t.datetime :updated_at
 end

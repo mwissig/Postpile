@@ -2,27 +2,32 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Log in page</title>
+    <title>Rumblr</title>
     <link rel="stylesheet" type="text/css" href="main.css">
-  <link href="https://fonts.googleapis.com/css?family=Oswald|Sigmar+One" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Assistant:300|Hammersmith+One" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   </head>
   <body>
 <header>
 <ul>
-  <li><a href="/">Home</a></li>
+  <li><a href="/"><i class="fas fa-home"></i></a></li>
   <% if session[:user] == nil %>
     <li><a href="/signup">Sign up</a></li>
       <li><a href="/login">Log in</a></li>
       <% else %>
-            <li><a href="/account"> <img class="avatar" src="<%= session[:user].avatar_url %>"> <%= session[:user].username %> </a></li>
+            <li><a href="/account"> <img class="avatar" src="<%= session[:user].avatar_url %>" onerror='this.src="images/gen.png"'>
+               <%= session[:user].username %></a></li>
             <li><a href="/post">Post</a></li>
             <li><a href="/logout">Log out</a></li>
       <% end %>
+      <li><i class="fas fa-search"></i></li>
 </ul>
 </header>
 <div class="container">
+  <div class="innercontainer">
 <%= yield %>
 </div>
+</div>
+<script src="app.js"></script>
   </body>
 </html>

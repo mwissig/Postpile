@@ -12,22 +12,13 @@ get '/' do
   erb :home
 end
 
-# post '/' do
-#
-#   class AddPartNumberToProducts < ActiveRecord::Migration[5.2]
-#     def change
-#       add_column :products, :part_number, :string
-#     end
-#   end
-#
-#   if ActiveRecord::Base.connection.column_exists?(:tags, params['tag'].to_sym)
-#     params['tag'].to_sym += 1
-#   else
-#   tag = ActiveRecord::Migration.add_column :tags, params['tag'].to_sym, :string
-# params['tag'].to_sym = 1
-# end
-# tag.save
-# end
+post '/' do
+  post_id = params['id']
+  post = Post.find_by(id: post_id)
+  post.likes += 1
+  post.save
+  redirect '/'
+end
 
 get '/login' do
   erb :login
@@ -42,7 +33,10 @@ post '/signup' do
   user = User.new(
     email: params['email'],
     username: params['username'],
-    password: params['password']
+    password: params['password'],
+    first_name: params['first_name'],
+    last_name: params['last_name'],
+    birthday: params['birthday']
   )
   user.save
   redirect '/'
@@ -62,6 +56,8 @@ post '/login' do
 end
 
 get '/account' do
+  @users = User.all
+  @posts = Post.all
   erb :account
 end
 
@@ -88,15 +84,22 @@ post '/post' do
     user_id: session[:user].id,
     title: params['title'],
     image_url: params['image_url'],
-    body: params['body']
+    body: params['body'],
+    likes: 0
   )
   post.save
-  this_post = Post.find_by(id: post.id)
-  tag = Tag.new(
-    post_id: this_post.id
-  )
-  tag.save
   redirect '/'
+end
+
+get '/deleteme' do
+  erb :deleteme
+end
+
+get '/delete' do
+  User.find(session[:user].id).destroy
+  Post.delete_all(user_id: session[:user].id)
+    session[:user] = nil
+    redirect :signup
 end
 
 require './models'

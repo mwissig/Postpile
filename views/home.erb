@@ -1,18 +1,53 @@
+  <% if session[:user] != nil %>
 
 <% @posts.reverse.each do |p| %>
-<div class="post">
-  Posted by:
-  <% post_user = User.find_by(id: p.user_id) %>
-    <img class="avatar" src="<%= post_user.avatar_url %>">
-    <%= post_user.username %> at <%= p.created_at %>
-    <h2><%= p.title %></h2>
-    <img src='<%= p.image_url %>'>
-    <p>
-      <%= p.body %></p><br>
-      <form class="tagForm" action="index.html" method="post">
-        <input type="text" name="post_id" style="visibility: hidden;"><br>
-          <input type="text" placeholder="tag" name="tag"><br>
-        <input type="submit" value="Tag post">
-      </form>
+          <% post_user = User.find_by(id: p.user_id) %>
+  <div class="post" id="<%= p.id %>">
+    <div>
+      <h2><%= p.title %>
+<% if session[:user].id == post_user.id %>
+(your post)
+<% end %>
+      </h2>
     </div>
+    <% if p.image_url != "" %>
+      <% @height = 400 %>
+      <% else %>
+        <% @height = 0 %><% end %>
+        <div style="background-image: url('<%= p.image_url %>'); height: <%= @height %>px;"></div>
+        <div>
+          <p>
+            <%= p.body %></p>
+        </div>
+        <div>
+          Posted by:
+            <img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="images/gen.png"'>
+            <%= post_user.username %>
+            at
+            <%= p.created_at %>
+          </div>
+          <div>
+            <% if post_user.id != session[:user].id %>
+            <form class="like" action="/" method="post">
+              <input type="hidden" name="id" value="<%= p.id %>">
+              <input type="submit" onclick="hide()" value="Like">
+            </form>
+            <% end %>
+            <%= p.likes %>
+          </div>
+        </div>
+        <script>
+        var x = <%= @posts.reverse.first.id %>;
+        </script>
+      <% end %>
+<% else %>
+Log in to see more posts like these!
+  <marquee style="width: 100%;">
+<% @posts.reverse.each do |p| %>
+    <% if p.image_url != "" %>
+  <img src='<%= p.image_url %>' style="display: inline; height: 400px; width: 400px; opacity: .8;">
+    <% end %>
+
   <% end %>
+   </marquee>
+<% end %>
