@@ -12,21 +12,22 @@
   </head>
   <body>
       <% if session[:user] != nil %>
-    <% p = @posts.find_by(id: @id) %>
-      <% post_user = User.find_by(id: p.user_id) %>
-      <div class="post" id="<%= p.id %>">
-        <div>
-          <h2 style="display: inline;"><%= p.title %></h2>
-      <% if session[:user].id == post_user.id %>
+      <% p = @posts.find_by(id: @id) %>
+        <% post_user = User.find_by(id: p.user_id) %>
+      <% if session[:user].id == post_user.id %><div class="accountinfo">
 <form class="floatingform" action="/posts/<%= p.id %>/delete" method="post">
   <h2><%= p.title %></h2>
   <p>Delete this post?</p>
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="delete">
 </form>
-      <% else %>
+</div>
+      <% end %>
+
+      <div class="post" id="<%= p.id %>">
+        <div>
           <h2><%= p.title %></h2>
-            <% end %>
+
         </div>
         <% if p.image_url != "" %>
           <% @height = 400 %>

@@ -16,8 +16,8 @@ Change your avatar  <i class="fas fa-pencil-alt"></i></p>
 </form>
 <a href="/deleteme">Delete your account <i class="far fa-times-circle"></i></a>
 </div>
-<h2>
-Your posts</h2>
+<div class="titlebox"><h2>
+Your posts</h2></div>
 
 <% @posts.reverse.each do |p| %>
           <% post_user = User.find_by(id: p.user_id) %>

@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "stitch";
-    src: url("PatchworkStitchlings.woff") format('woff');
+  font-family: "stitch";
+  src: url("PatchworkStitchlings.woff") format('woff');
 }
 
 html {
@@ -71,10 +71,11 @@ header {
   position: fixed;
   left: 0;
   top: 0;
-  height: 80px;
+  height: 90px;
   width: 100%;
   background-color: rgb(6, 0, 14);
   box-shadow: 1px 1px .5px black;
+  line-height: 2;
 }
 
 h1, h2, h3 {
@@ -90,12 +91,15 @@ h1 {
 h2 {
   margin: 0 !important;
 }
+
 .pagetitle {
   font-family: "stitch";
 }
+
 .logo {
   font-size: 18px;
 }
+
 .container {
   width: 100%;
   height: 100%;
@@ -114,10 +118,12 @@ h2 {
   height: 50px;
   border-radius: 50%;
 }
-.like input{
+
+.like input {
   font-size: 12px;
-    padding: 3px 5px;
+  padding: 3px 5px;
 }
+
 .post {
   display: grid;
   grid-template-rows: 3em auto auto 70px 3.5em;
@@ -129,22 +135,24 @@ h2 {
   font-size: 14px;
   box-shadow: 1px 1px .5px black;
 }
+
 .post a {
   color: black;
 }
+
 .post div {
   padding: 12px;
 }
 
 .post div:nth-child(1) {
-  background-color:  rgb(6, 0, 14);
+  background-color: rgb(6, 0, 14);
   color: white;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 }
 
 .post div:nth-child(1) a {
-color: white;
+  color: white;
 }
 
 .post div:nth-child(2) {
@@ -163,9 +171,8 @@ color: white;
 .post div:nth-child(4) img {
   border: 2px solid black;
 }
-.post div:nth-child(5) {
 
-}
+.post div:nth-child(5) {}
 
 .accountinfo {
   position: fixed;
@@ -174,35 +181,40 @@ color: white;
   background-color: rgb(6, 0, 14);
   padding: 5px;
   border-radius: 5px;
-    box-shadow: 1px 1px .5px black;
+  box-shadow: 1px 1px .5px black;
+    font-size: 14px;
 }
-.floatingform {
-  position: fixed;
-  top: 120px;
-  left: 50px;
+.titlebox {
   background-color: rgb(6, 0, 14);
   padding: 5px;
   border-radius: 5px;
-    box-shadow: 1px 1px .5px black;
+  box-shadow: 1px 1px .5px black;
+    font-size: 14px;
+    width: 40vw;
+    text-align: center;
 }
 .hidden {
   visibility: hidden;
 }
+
 @media only screen and (max-width: 600px) {
-.post {
-  width: 90vw;
-}
-.accountinfo {
-  position: relative;
-  width: 90vw;
-  font-size: 12px;
-  top: auto;
-  left: auto;
-}
-.floatingform{
-  position: relative;
-  width: 90vw;
-  font-size: 12px;
-  top: auto;
-  left: auto;
-}
+  .post {
+    width: 90vw;
+  }
+  .titlebox {
+        width: 90vw;
+  }
+  .accountinfo {
+    position: relative;
+    width: 90vw;
+    font-size: 12px;
+    top: auto;
+    left: auto;
+  }
+  .floatingform {
+    position: relative;
+    width: 90vw;
+    font-size: 12px;
+    top: auto;
+    left: auto;
+  }
