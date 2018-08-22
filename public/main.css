@@ -226,6 +226,20 @@ grid-template-columns: repeat(4, 60px);
    width: auto;
    opacity: .8;
 }
+textarea {
+  width: 50vw;
+  height: 20vh;
+}
+.mainform {
+  margin: 5px;
+  text-align: center;
+}
+.mainform input {
+      width: 50vw;
+    }
+    .nameinput {
+      width: 23.3vw !important;
+    }
 @media only screen and (max-width: 1200px) {
   .accountinfo {
     left: 10px;
@@ -263,7 +277,16 @@ grid-template-columns: repeat(4, 60px);
     top: auto;
     left: auto;
   }
-
+  .mainform input {
+        width: 90vw;
+  }
+  .nameinput {
+    width: 39vw !important;
+  }
+  textarea {
+    width: 90vw;
+    height: 50vh;
+  }
 }
 @media only screen and (max-width: 700px) {
   header li {

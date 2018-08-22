@@ -1,10 +1,11 @@
-<h1>Sign Up</h1>
+<div class="titlebox"><h1>Sign Up</h1></div>
 <p>Already have an account? Click <a href="/login">here</a> to log in.</p>
-<form class="" action="/signup" method="post">
-  <input type="text" placeholder="Create a username" name="username" size="40" required><br>
-  <input type="text" placeholder="First Name" name="first_name" size="16">  <input type="text" placeholder="Last Name" name="last_name" size="16" required><br>
-  <label>Date of birth</label><input type="date" name="birthday" placeholder="Date of birth" size="40" required><br>
-    <input type="email" placeholder="Email" name="email" size="40"required><br>
-  <input type="password" placeholder='Create a Password' name="password" size="40" required><br>
+<form class="mainform" action="/signup" method="post">
+  <input type="text" placeholder="Create a username" name="username" required><br>
+  <input class="nameinput" type="text" placeholder="First Name" name="first_name" required>
+  <input class="nameinput" type="text" placeholder="Last Name" name="last_name" required><br>
+  <label>Date of birth</label><br><input type="date" name="birthday" placeholder="Date of birth" required><br>
+    <input type="email" placeholder="Email" name="email" required><br>
+  <input type="password" placeholder='Create a Password' name="password" required><br>
   <input type="submit" value="Sign Up">
 </form>
