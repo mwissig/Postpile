@@ -176,6 +176,15 @@ color: white;
   border-radius: 5px;
     box-shadow: 1px 1px .5px black;
 }
+.floatingform {
+  position: fixed;
+  top: 120px;
+  left: 50px;
+  background-color: rgb(6, 0, 14);
+  padding: 5px;
+  border-radius: 5px;
+    box-shadow: 1px 1px .5px black;
+}
 .hidden {
   visibility: hidden;
 }
@@ -190,4 +199,10 @@ color: white;
   top: auto;
   left: auto;
 }
+.floatingform{
+  position: relative;
+  width: 90vw;
+  font-size: 12px;
+  top: auto;
+  left: auto;
 }

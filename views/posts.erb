@@ -16,14 +16,17 @@
       <% post_user = User.find_by(id: p.user_id) %>
       <div class="post" id="<%= p.id %>">
         <div>
-          <h2><%= p.title %>
+          <h2 style="display: inline;"><%= p.title %></h2>
       <% if session[:user].id == post_user.id %>
-<form class="" action="/posts/<%= p.id %>/delete" method="post">
+<form class="floatingform" action="/posts/<%= p.id %>/delete" method="post">
+  <h2><%= p.title %></h2>
+  <p>Delete this post?</p>
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="delete">
 </form>
-      <% end %>
-          </h2>
+      <% else %>
+          <h2><%= p.title %></h2>
+            <% end %>
         </div>
         <% if p.image_url != "" %>
           <% @height = 400 %>
@@ -44,7 +47,6 @@
               <div>
                 <% if post_user.id != session[:user].id %>
             <i class="fas fa-heart"></i> <%= p.likes %>
-                </form>
                 <% else %>
                 <i class="fas fa-heart"></i> <%= p.likes %>
                 <% end %>
