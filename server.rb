@@ -130,8 +130,6 @@ delete '/deleteme/delete' do
 
   @current_user = User.find(session[:user].id)
   @current_user.destroy
-  # @user_posts = @posts.find_by(user_id: @current_user.id)
-  # @user_posts.each {|p| p.destroy }
     session.clear
     redirect '/logout'
   end
