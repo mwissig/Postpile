@@ -183,4 +183,11 @@ color: white;
 .post {
   width: 90vw;
 }
+.accountinfo {
+  position: relative;
+  width: 90vw;
+  font-size: 12px;
+  top: auto;
+  left: auto;
+}
 }
