@@ -44,14 +44,17 @@
         var x = <%= @posts.reverse.first.id %>;
         </script>
       <% end %>
-<% else %><h1 class="pagetitle">Postpile</h1>
-Log in to see more posts like these!
+<% else %>
+<div class="biglogo"><h1 class="pagetitle">Postpile</h1>
+Log in to see more posts like these!</div>
   <marquee style="width: 100%;">
-<% @posts.reverse.each do |p| %>
+    <div class="marquee">
+    <%  @pr = @posts.reverse %>
+<% @pr[0..20].each do |p| %>
     <% if p.image_url != "" %>
-  <img src='<%= p.image_url %>' onerror='this.src="http://i65.tinypic.com/28txgzr.jpg"' style="display: inline; height: 400px; width: auto; opacity: .8;">
+  <img class="inmarquee" src='<%= p.image_url %>' onerror='this.src="http://i65.tinypic.com/28txgzr.jpg"'>
     <% end %>
 
   <% end %>
-   </marquee>
+</marquee></div>
 <% end %>

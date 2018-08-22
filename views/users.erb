@@ -15,8 +15,8 @@
                     <% this_user = User.find_by(id: @id) %>
       <div class="titlebox"><h2>
                     <%= this_user.username %>'s posts</h2></div>
-
-      <% @posts.reverse.each do |p| %>
+                    <%  @pr = @posts.reverse %>
+                <% @pr[0..20].each do |p| %>
 
                 <% if @id == p.user_id %>
                 <div class="post" id="<%= p.id %>">
