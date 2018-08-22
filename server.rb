@@ -46,8 +46,18 @@ delete '/posts/:id/delete' do
     @id = params[:id]
     @users = User.all
     @posts = Post.all
+      @follows = Follow.all
     erb :users
   end
+
+  post '/users/:id/follow' do
+     follow = Follow.new(
+       follower_id: session[:user].id,
+       followed_id: params[:id]
+     )
+     follow.save
+     redirect '/account'
+   end
 
 get '/login' do
   erb :login
@@ -87,7 +97,7 @@ end
 get '/account' do
   @users = User.all
   @posts = Post.all
-
+  @follows = Follow.all
   erb :account
 end
 

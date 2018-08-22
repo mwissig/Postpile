@@ -11,8 +11,27 @@
 
   </head>
   <body>
+  <%  followed = 0 %>
+                        <% this_user = User.find_by(id: @id) %>
       <% if session[:user] != nil %>
-                    <% this_user = User.find_by(id: @id) %>
+        <% if session[:user].id != this_user.id %>
+          <% @follows.each do |f| %>
+            <% if session[:user].id.to_s == f.follower_id && @id == f.followed_id %>
+              <% followed = 1 %>
+
+              <% else %>
+              <% followed = 2 %>
+
+            <% end %>
+          <% end %>
+        <% end %>
+        <% if followed == 1 %>
+<div class="accountinfo">You follow this user</div>
+<% elsif followed == 2 %>
+<div class="accountinfo"><form class="" action="/users/<%= @id %>/follow" method="post">
+  <input type="submit" value="Follow this user">
+</form></div>
+<% end %>
       <div class="titlebox"><h2>
                     <%= this_user.username %>'s posts</h2></div>
                     <%  @pr = @posts.reverse %>

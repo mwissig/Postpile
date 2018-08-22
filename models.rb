@@ -16,3 +16,7 @@ end
 class Post < ActiveRecord::Base
   belongs_to :user
 end
+
+class Follow < ActiveRecord::Base
+
+end
