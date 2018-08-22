@@ -36,7 +36,7 @@
                   <h2>
                     <%= this_user.username %>'s posts</h2>
                 </div>
-                <%  @pr = @posts.reverse %>
+                <%  @pr = @posts.sort.reverse %>
                   <% @pr[0..20].each do |p| %>
 
                     <% if @id == p.user_id %>

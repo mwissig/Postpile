@@ -1,6 +1,6 @@
   <% if session[:user] != nil %>
-
-<% @posts.reverse.each do |p| %>
+  <%  @pr = @posts.sort.reverse %>
+    <% @pr[0..20].each do |p| %>
           <% post_user = User.find_by(id: p.user_id) %>
   <div class="post" id="<%= p.id %>">
     <div>
@@ -41,7 +41,7 @@
           </div>
         </div>
         <script>
-        var x = <%= @posts.reverse.first.id %>;
+        var x = <%= @posts.sort.reverse.first.id %>;
         </script>
       <% end %>
 <% else %>
@@ -49,7 +49,7 @@
 <a href="/login">Log in</a> or <a href="/signup">create a new account</a> to see more great posts!</div>
   <marquee style="width: 100%;">
     <div class="marquee">
-    <%  @pr = @posts.reverse %>
+    <%  @pr = @posts.sort.reverse %>
 <% @pr[0..20].each do |p| %>
     <% if p.image_url != "" %>
   <img class="inmarquee" src='<%= p.image_url %>' onerror='this.src="http://i65.tinypic.com/28txgzr.jpg"'>

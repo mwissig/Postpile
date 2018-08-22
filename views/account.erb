@@ -55,7 +55,7 @@
           <h2>
             Your posts</h2>
         </div>
-        <%  @pr = @posts.reverse %>
+        <%  @pr = @posts.sort.reverse %>
           <% @pr[0..20].each do |p| %>
             <% post_user = User.find_by(id: p.user_id) %>
               <% if session[:user].id == post_user.id %>
