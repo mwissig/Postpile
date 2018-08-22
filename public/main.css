@@ -235,7 +235,7 @@ grid-template-columns: repeat(4, 60px);
   }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1100px) {
   .post {
     width: 90vw;
   }
@@ -263,6 +263,9 @@ grid-template-columns: repeat(4, 60px);
     top: auto;
     left: auto;
   }
+
+}
+@media only screen and (max-width: 700px) {
   header li {
     display: block;
     margin: 0;
