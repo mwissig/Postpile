@@ -20,7 +20,7 @@
       <% else %>
             <li><a href="/account"> <img class="avatar" src="<%= session[:user].avatar_url %>" onerror='this.src="http://postpile.herokuapp.com/images/gen.png"'>
                <%= session[:user].username %></a></li>
-            <li><a href="/post">Post</a></li>
+            <li><a href="/post"><span class="menutext">Post </span><i class="fas fa-pen-nib"></i></a></li>
             <li><a href="/logout">Log out</a></li>
       <% end %>
       <li><a href="https://github.com/mwissig/Postpile"><i class="fab fa-github"></a></i></li>

@@ -76,6 +76,7 @@ header {
   background-color: rgb(6, 0, 14);
   box-shadow: 1px 1px .5px black;
   line-height: 2;
+  z-index: 12;
 }
 
 h1, h2, h3 {
@@ -129,7 +130,7 @@ h2 {
   grid-template-rows: 3em auto auto 70px 3.5em;
   background-color: white;
   border-radius: 5px;
-  width: 40vw;
+  width: 50vw;
   color: black;
   margin: 10px;
   font-size: 14px;
@@ -182,27 +183,39 @@ h2 {
   padding: 5px;
   border-radius: 5px;
   box-shadow: 1px 1px .5px black;
-    font-size: 14px;
+  font-size: 12px;
+  line-height: 1;
 }
+
 .titlebox {
   background-color: rgb(6, 0, 14);
   padding: 5px;
   border-radius: 5px;
   box-shadow: 1px 1px .5px black;
-    font-size: 14px;
-    width: 40vw;
-    text-align: center;
+  font-size: 14px;
+  width: 50vw;
+  text-align: center;
 }
+
 .hidden {
   visibility: hidden;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1200px) {
+  .accountinfo {
+    left: 10px;
+  }
+  .accountinfo input {
+    max-width: 18vw;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
   .post {
     width: 90vw;
   }
   .titlebox {
-        width: 90vw;
+    width: 90vw;
   }
   .accountinfo {
     position: relative;
@@ -210,6 +223,10 @@ h2 {
     font-size: 12px;
     top: auto;
     left: auto;
+    margin-bottom: 10px;
+  }
+  .accountinfo input {
+    max-width: 80vw;
   }
   .floatingform {
     position: relative;
@@ -218,3 +235,24 @@ h2 {
     top: auto;
     left: auto;
   }
+  header li {
+    display: block;
+    margin: 0;
+  }
+  header {
+    height: 170px;
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+  }
+  header .avatar {
+    width: 30px;
+    height: 30px;
+  }
+  header .logo {
+    font-size: 12px;
+  }
+  .innercontainer {
+    margin-top: 180px;
+  }
+}
