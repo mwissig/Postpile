@@ -28,20 +28,20 @@
       </a>
       <hr>
       You follow:
-      <div>
+      <div class="follows">
         <% @follows.each do |f| %>
           <% if session[:user].id.to_s == f.follower_id %>
             <% followed_user = User.find_by(id: f.followed_id) %>
-              <a href="/users/<%= followed_user.id %>"><img class="avatar" src="<%= followed_user.avatar_url %>" onerror='this.src="images/gen.png"'></a>
+              <div><a href="/users/<%= followed_user.id %>"><img class="avatar" src="<%= followed_user.avatar_url %>" onerror='this.src="images/gen.png"'></a></div>
             <% end %>
           <% end %>
         </div>
         Following you:
-        <div>
+        <div class="follows">
           <% @follows.each do |f| %>
             <% if session[:user].id.to_s == f.followed_id %>
               <% following_user = User.find_by(id: f.follower_id) %>
-                <a href="/users/<%= following_user.id %>"><img class="avatar" src="<%= following_user.avatar_url %>" onerror='this.src="images/gen.png"'></a> 
+                <div><a href="/users/<%= following_user.id %>"><img class="avatar" src="<%= following_user.avatar_url %>" onerror='this.src="images/gen.png"'></a></div>
               <% end %>
             <% end %>
           </div>
