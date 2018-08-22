@@ -11,70 +11,74 @@
 
   </head>
   <body>
-  <%  followed = 0 %>
-                        <% this_user = User.find_by(id: @id) %>
-      <% if session[:user] != nil %>
-        <% if session[:user].id != this_user.id %>
-          <% @follows.each do |f| %>
-            <% if session[:user].id.to_s == f.follower_id && @id == f.followed_id %>
-              <% followed = 1 %>
+    <%  followed = 0 %>
+      <% this_user = User.find_by(id: @id) %>
+        <% if session[:user] != nil %>
+          <% if session[:user].id != this_user.id %>
+            <% @follows.each do |f| %>
+              <% if session[:user].id.to_s == f.follower_id && @id == f.followed_id %>
+                <% followed = 1 %>
 
-              <% else %>
-              <% followed = 2 %>
-
-            <% end %>
-          <% end %>
-        <% end %>
-        <% if followed == 1 %>
-<div class="accountinfo">You follow this user</div>
-<% elsif followed == 2 %>
-<div class="accountinfo"><form class="" action="/users/<%= @id %>/follow" method="post">
-  <input type="submit" value="Follow this user">
-</form></div>
-<% end %>
-      <div class="titlebox"><h2>
-                    <%= this_user.username %>'s posts</h2></div>
-                    <%  @pr = @posts.reverse %>
-                <% @pr[0..20].each do |p| %>
-
-                <% if @id == p.user_id %>
-                <div class="post" id="<%= p.id %>">
-                  <div>
-                    <h2><%= p.title %>
-              <% if session[:user].id == this_user.id %>
-              (your post)
+                <% else %>
+                  <% followed = 2 %><% end %>
+                <% end %>
               <% end %>
-                    </h2>
+              <% if followed == 1 %>
+                <div class="accountinfo">You follow this user</div>
+                <% elsif followed == 2 %>
+                  <div class="accountinfo">
+                    <form class="" action="/users/<%= @id %>/follow" method="post">
+                      <input type="submit" value="Follow this user">
+                    </form>
                   </div>
-                  <% if p.image_url != "" %>
-                    <% @height = 400 %>
-                    <% else %>
-                      <% @height = 0 %><% end %>
-                      <div style="background-image: url('<%= p.image_url %>'); height: <%= @height %>px;"></div>
-                      <div>
-                        <p>
-                          <%= p.body %></p>
-                      </div>
-                      <div>
-                        Posted by:
-                          <img class="avatar" src="<%= this_user.avatar_url %>"  onerror='this.src="../images/gen.png"'>
-                          <%= this_user.username %>
-                          at
-                          <%= p.created_at %>
-                        </div>
+                <% end %>
+                <div class="titlebox">
+                  <h2>
+                    <%= this_user.username %>'s posts</h2>
+                </div>
+                <%  @pr = @posts.reverse %>
+                  <% @pr[0..20].each do |p| %>
+
+                    <% if @id == p.user_id %>
+                      <div class="post" id="<%= p.id %>">
                         <div>
-                          <p><i class="fas fa-heart"></i> <%= p.likes %>
-                              <a href="../posts/<%= p.id %>">Permalink</a>
-                           </p>
+                          <h2><%= p.title %>
+                            <% if session[:user].id == this_user.id %>
+                              (your post)
+                            <% end %>
+                          </h2>
                         </div>
-                      </div>
-                      <script>
-                      var x = <%= @posts.reverse.first.id %>;
-                      </script>
-            <% end %>
-            <% end %>
-<% else %>
-You need to be logged in to view this post.
-<% end %>
-      </body>
-    </html>
+                        <% if p.image_url != "" %>
+                          <% @height = 400 %>
+                          <% else %>
+                            <% @height = 0 %><% end %>
+                            <div style="background-image: url('<%= p.image_url %>'); height: <%= @height %>px;"></div>
+                            <div>
+                              <p>
+                                <%= p.body %></p>
+                            </div>
+                            <div>
+                              Posted by:
+                              <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../images/gen.png"'>
+                              <%= this_user.username %>
+                              at
+                              <%= p.created_at %>
+                            </div>
+                            <div>
+                              <p>
+                                <i class="fas fa-heart"></i>
+                                <%= p.likes %>
+                                <a href="../posts/<%= p.id %>">Permalink</a>
+                              </p>
+                            </div>
+                          </div>
+                          <script>
+                            var x = <%= @posts.reverse.first.id %>;
+                          </script>
+                        <% end %>
+                      <% end %>
+                    <% else %>
+                      You need to be logged in to view this post.
+                    <% end %>
+                  </body>
+                </html>

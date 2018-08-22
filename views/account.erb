@@ -41,7 +41,7 @@
           <% @follows.each do |f| %>
             <% if session[:user].id.to_s == f.followed_id %>
               <% following_user = User.find_by(id: f.follower_id) %>
-                <a href="/users/<%= following_user.id %>"><img class="avatar" src="<%= following_user.avatar_url %>" onerror='this.src="images/gen.png"'></a>
+                <a href="/users/<%= following_user.id %>"><img class="avatar" src="<%= following_user.avatar_url %>" onerror='this.src="images/gen.png"'></a> 
               <% end %>
             <% end %>
           </div>
