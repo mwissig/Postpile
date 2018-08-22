@@ -46,7 +46,9 @@
       <% end %>
 <% else %>
 <div class="biglogo"><h1 class="pagetitle">Postpile</h1>
-<a href="/login">Log in</a> or <a href="/signup">create a new account</a> to see more great posts!</div>
+  <p class="shadow">
+<a href="/login">Log in</a> or <a href="/signup">create a new account</a> to see more great posts!
+</p></div>
   <marquee style="width: 100%;">
     <div class="marquee">
     <%  @pr = @posts.sort.reverse %>

@@ -82,8 +82,11 @@ header {
 h1, h2, h3 {
   margin-top: 0px;
   font-family: 'Hammersmith One', sans-serif;
+    text-shadow: 1px 1px .5px black;
 }
-
+.shadow {
+      text-shadow: 1px 1px 1px black;
+}
 h1 {
   font-weight: normal;
   text-shadow: 1px 1px .5px black;
@@ -91,6 +94,7 @@ h1 {
 
 h2 {
   margin: 0 !important;
+
 }
 
 .pagetitle {
@@ -99,6 +103,7 @@ h2 {
 
 .logo {
   font-size: 18px;
+  margin: 5px;
 }
 
 .container {
@@ -118,6 +123,8 @@ h2 {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  border: 1px solid black !important;
+  box-shadow: 1px 1px .5px black;
 }
 
 .like input {
