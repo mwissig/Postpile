@@ -16,7 +16,7 @@
         <% if session[:user] != nil %>
           <% if session[:user].id != this_user.id %>
             <% @follows.each do |f| %>
-              <% if session[:user].id.to_s == f.follower_id && @id == f.followed_id %>
+              <% if session[:user].id.to_s == f.follower_id && @id.to_s == f.followed_id %>
                 <% followed = 1 %>
 
                 <% else %>
