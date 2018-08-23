@@ -21,7 +21,7 @@
                   <%= @page.to_i+21 %>"><i class="fas fa-forward"></i> Next 20 posts</a></h2> -->
   </div>
 
-  <%  @pr = @posts.sort.reverse[@page..-1].to_a %>
+  <%  @pr = @posts.sort.reverse %>
     <% @pr.each do |p| %>
     <% if p.id != nil %>
           <% post_user = User.find_by(id: p.user_id) %>
