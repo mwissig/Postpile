@@ -27,8 +27,8 @@ get '/top' do
   erb :top
 end
 
-get '/pages/:x' do
-  @x = params[:x].to_i*20
+get '/pages/:page' do
+  @page = params[:page].to_i*20
   @users = User.all
   @posts = Post.all
     @comments = Comment.all
