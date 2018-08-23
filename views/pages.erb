@@ -40,14 +40,14 @@
           </div>
           <div>
             Posted by:
-              <a href="users/<%= post_user.id %>"><img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="images/gen.png"'>
+              <a href="users/<%= post_user.id %>"><img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="../images/gen.png"'>
               <%= post_user.username %></a>
               at
               <%= p.created_at %>
             </div>
             <div>
               <% if post_user.id != session[:user].id %>
-              <form style="display: inline;" class="like" action="/" method="post">
+              <form style="display: inline;" class="like" action="../" method="post">
                 <input type="hidden" name="id" value="<%= p.id %>">
                 <input type="submit" onclick="hide()" value="I love this">
                 <span class ="likesComments">
@@ -60,7 +60,7 @@
                     <% end %>
                   <% end %>
                   <%= numComments %> comments -
-                      <a class="permalink" href="posts/<%= p.id %>">Permalink & Comments</a>
+                      <a class="permalink" href="../posts/<%= p.id %>">Permalink & Comments</a>
                 </p>
               </form>
               <% else %>
@@ -74,7 +74,7 @@
                   <% end %>
                 <% end %>
                 <%= numComments %> comments -
-                    <a class="permalink" href="posts/<%= p.id %>">Permalink & Comments</a>
+                    <a class="permalink" href="../posts/<%= p.id %>">Permalink & Comments</a>
               </p>
               <% end %>
 
@@ -87,7 +87,7 @@
   <% else %>
   <div class="biglogo"><h1 class="pagetitle">Postpile</h1>
     <p class="shadow">
-  <a href="/login">Log in</a> or <a href="/signup">create a new account</a> to see more great posts!
+  <a href="../login">Log in</a> or <a href="../signup">create a new account</a> to see more great posts!
   </div></div>
     <marquee style="width: 100%;">
       <div class="marquee">
