@@ -18,10 +18,12 @@
         <h2><a href="../top"><i class="fas fa-heart"></i> 20 most loved posts</a></h2>
         <br>
                 <h2><a href="/pages/
-                  <%= @x+21 %>"><i class="fas fa-forward"></i> Next 20 posts</a></h2>
+                  <%= @x.to_i+21 %>"><i class="fas fa-forward"></i> Next 20 posts</a></h2>
   </div>
+  <% @x = @x.to_i*20 %>
   <%  @pr = @posts.sort.reverse %>
-    <% @pr[@x.to_i..@x.to_i+20].each do |p| %>
+    <% @pr[@x..@x+20].each do |p| %>
+    <% if p.id != nil %>
           <% post_user = User.find_by(id: p.user_id) %>
   <div class="post" id="<%= p.id %>">
     <div>
@@ -101,6 +103,7 @@
 
   <% end %>
 </marquee></div>
+<% end %>
 <% end %>
 </body>
 </html>
