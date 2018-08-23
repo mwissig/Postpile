@@ -47,9 +47,35 @@
               </div>
               <div>
                 <% if post_user.id != session[:user].id %>
-            <i class="fas fa-heart"></i> <%= p.likes %>
+                <form style="display: inline;" class="like" action="../" method="post">
+                  <input type="hidden" name="id" value="<%= p.id %>">
+                  <input type="submit" onclick="hide()" value="I love this">
+                  <span class ="likesComments">
+                    <i class="fas fa-heart"></i>
+                    <%= p.likes %> loves -
+                    <% numComments = 0 %>
+                    <% @comments.each do |c| %>
+                      <% if c.post_id == p.id %>
+                      <% numComments += 1 %>
+                      <% end %>
+                    <% end %>
+                    <%= numComments %> comments -
+
+                  </p>
+                </form>
                 <% else %>
-                <i class="fas fa-heart"></i> <%= p.likes %>
+                <p class ="likesComments">
+                  <i class="fas fa-heart"></i>
+                  <%= p.likes %> loves -
+                  <% numComments = 0 %>
+                  <% @comments.each do |c| %>
+                    <% if c.post_id == p.id %>
+                    <% numComments += 1 %>
+                    <% end %>
+                  <% end %>
+                  <%= numComments %> comments -
+                      
+                </p>
                 <% end %>
 
               </div>
