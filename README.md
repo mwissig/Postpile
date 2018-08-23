@@ -1,4 +1,13 @@
 # Postpile
+[Visit Postpile On Heroku](http://postpile.herokuapp.com/)
+
+You can use the login:
+
+Username: User
+Password: password
+
+or create a new account. Usernames and passwords are case sensitive.
+
 A social media site made with Sinatra.
 Users have the ability to create accounts, log in, and create posts.
 They can also delete their own posts and accounts.
