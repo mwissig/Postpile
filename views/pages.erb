@@ -11,50 +11,60 @@
 
   </head>
   <body>
-  <% if session[:user] != nil %>
-  <div class="accountinfo">
-    <h1>Home</h1>
-    <h2><a href="../"><i class="fas fa-star"></i> 20 most recent posts</a></h2>
-        <h2><a href="../top"><i class="fas fa-heart"></i> 20 most loved posts</a></h2>
-        <!-- <br>
-                <h2><a href="/pages/
-                  <%= @page.to_i+21 %>"><i class="fas fa-forward"></i> Next 20 posts</a></h2> -->
-  </div>
-
-  <%  @pr = @posts.sort.reverse %>
-    <% @pr.each do |p| %>
-    <% if p.id != nil %>
-          <% post_user = User.find_by(id: p.user_id) %>
-  <div class="post" id="<%= p.id %>">
-    <div>
-      <h2><%= p.title %>
-<% if session[:user].id == post_user.id %>
-(your post)
-<% end %>
-      </h2>
+    <% if session[:user] != nil %>
+    <div class="accountinfo">
+      <h1>Home</h1>
+      <h2><a href="/"><i class="fas fa-star"></i> 20 most recent posts</a></h2>
+          <h2><a href="/top"><i class="fas fa-heart"></i> 20 most loved posts</a></h2><br>
+                  <!-- <h2><a href="/pages/1"><i class="fas fa-forward"></i> All posts</a></h2> -->
     </div>
-    <% if p.image_url != "" %>
-      <% @height = 400 %>
-      <% else %>
-        <% @height = 0 %><% end %>
-        <div style="background-image: url('<%= p.image_url %>'); height: <%= @height %>px;"></div>
-        <div>
-          <p>
-            <%= p.body %></p>
-        </div>
-        <div>
-          Posted by:
-            <a href="users/<%= post_user.id %>"><img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="../images/gen.png"'>
-            <%= post_user.username %></a>
-            at
-            <%= p.created_at %>
+    <%  @pr = @posts.sort.reverse.to_a %>
+      <% @pr[21..-1].each do |p| %>
+            <% post_user = User.find_by(id: p.user_id) %>
+    <div class="post" id="<%= p.id %>">
+      <div>
+        <h2><%= p.title %>
+  <% if session[:user].id == post_user.id %>
+  (your post)
+  <% end %>
+        </h2>
+      </div>
+      <% if p.image_url != "" %>
+        <% @height = 400 %>
+        <% else %>
+          <% @height = 0 %><% end %>
+          <div style="background-image: url('<%= p.image_url %>'); height: <%= @height %>px;"></div>
+          <div>
+            <p>
+              <%= p.body %></p>
           </div>
           <div>
-            <% if post_user.id != session[:user].id %>
-            <form style="display: inline;" class="like" action="/" method="post">
-              <input type="hidden" name="id" value="<%= p.id %>">
-              <input type="submit" onclick="hide()" value="I love this">
-              <span class ="likesComments">
+            Posted by:
+              <a href="users/<%= post_user.id %>"><img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="images/gen.png"'>
+              <%= post_user.username %></a>
+              at
+              <%= p.created_at %>
+            </div>
+            <div>
+              <% if post_user.id != session[:user].id %>
+              <form style="display: inline;" class="like" action="/" method="post">
+                <input type="hidden" name="id" value="<%= p.id %>">
+                <input type="submit" onclick="hide()" value="I love this">
+                <span class ="likesComments">
+                  <i class="fas fa-heart"></i>
+                  <%= p.likes %> loves -
+                  <% numComments = 0 %>
+                  <% @comments.each do |c| %>
+                    <% if c.post_id == p.id %>
+                    <% numComments += 1 %>
+                    <% end %>
+                  <% end %>
+                  <%= numComments %> comments -
+                      <a class="permalink" href="posts/<%= p.id %>">Permalink & Comments</a>
+                </p>
+              </form>
+              <% else %>
+              <p class ="likesComments">
                 <i class="fas fa-heart"></i>
                 <%= p.likes %> loves -
                 <% numComments = 0 %>
@@ -64,46 +74,32 @@
                   <% end %>
                 <% end %>
                 <%= numComments %> comments -
-                    <a class="permalink" href="../posts/<%= p.id %>">Permalink & Comments</a>
+                    <a class="permalink" href="posts/<%= p.id %>">Permalink & Comments</a>
               </p>
-            </form>
-            <% else %>
-            <p class ="likesComments">
-              <i class="fas fa-heart"></i>
-              <%= p.likes %> loves -
-              <% numComments = 0 %>
-              <% @comments.each do |c| %>
-                <% if c.post_id == p.id %>
-                <% numComments += 1 %>
-                <% end %>
               <% end %>
-              <%= numComments %> comments -
-                  <a class="permalink" href="../posts/<%= p.id %>">Permalink & Comments</a>
-            </p>
-            <% end %>
 
+            </div>
           </div>
-        </div>
-        <script>
-        var x = <%= @posts.sort.reverse.first.id %>;
-        </script>
+          <script>
+          var x = <%= @posts.sort.reverse.first.id %>;
+          </script>
+        <% end %>
+  <% else %>
+  <div class="biglogo"><h1 class="pagetitle">Postpile</h1>
+    <p class="shadow">
+  <a href="/login">Log in</a> or <a href="/signup">create a new account</a> to see more great posts!
+  </div></div>
+    <marquee style="width: 100%;">
+      <div class="marquee">
+      <%  @pr = @posts.sort.reverse %>
+  <% @pr[0..20].each do |p| %>
+      <% if p.image_url != "" %>
+    <img class="inmarquee" src='<%= p.image_url %>' onerror='this.src="http://i65.tinypic.com/28txgzr.jpg"'>
       <% end %>
-<% else %>
-<div class="biglogo"><h1 class="pagetitle">Postpile</h1>
-  <p class="shadow">
-<a href="/login">Log in</a> or <a href="/signup">create a new account</a> to see more great posts!
-</div></div>
-  <marquee style="width: 100%;">
-    <div class="marquee">
-    <%  @pr = @posts.sort.reverse %>
-<% @pr[0..20].each do |p| %>
-    <% if p.image_url != "" %>
-  <img class="inmarquee" src='<%= p.image_url %>' onerror='this.src="http://i65.tinypic.com/28txgzr.jpg"'>
-    <% end %>
 
+    <% end %>
+  </marquee></div>
   <% end %>
-</marquee></div>
-<% end %>
-<% end %>
+
 </body>
 </html>
