@@ -1,8 +1,8 @@
   <% if session[:user] != nil %>
   <div class="accountinfo">
     <h1>Home</h1>
-    <h2><a href="/">20 most recent posts</a></h2>
-        <h2><a href="/top">20 top rated posts</a></h2>
+    <h2><a href="/"><i class="fas fa-star"></i> 20 most recent posts</a></h2>
+        <h2><a href="/top"><i class="fas fa-heart"></i> 20 most loved posts</a></h2>
   </div>
   <%  @pr = @posts.order(likes: :desc) %>
     <% @pr[0..20].each do |p| %>
