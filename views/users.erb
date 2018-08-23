@@ -27,10 +27,10 @@
                                 <h2><a href="users/<%= this_user.id %>/pages/1"><i class="fas fa-forward"></i> More posts</a></h2></div>
                 <% else %>
                   <div class="accountinfo">
-                    <form class="" action="/users/<%= @id %>/follow" method="post">
+                    <form class="" action="/<%= @id %>/follow" method="post">
                       <input type="submit" value="Follow this user">
                     </form>
-                                    <h2><a href="users/<%= this_user.id %>/pages/1"><i class="fas fa-forward"></i> More posts</a></h2>
+                                    <h2><a href="/<%= this_user.id %>/pages/1"><i class="fas fa-forward"></i> More posts</a></h2>
                   </div>
                 <% end %>
                 <div class="titlebox">
