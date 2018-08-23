@@ -27,6 +27,12 @@
                   <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../../../images/gen.png"'>
                   <h2><%= this_user.username %></h2>
                   <p>You are viewing <%= this_user.username %>'s posts.</p>
+                  <% if this_user.id == session[:user].id %>
+                  <h2>This is you.</h2>
+                  <p><a href="../../../account">Go to your account page</a></p>
+                  <% else %>
+                                    <h2>You follow this user</h2>
+                                    <% end %>
                   <h2>You follow this user</h2></div>
                 <% else %>
                   <div class="accountinfo">
