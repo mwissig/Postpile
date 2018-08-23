@@ -23,10 +23,18 @@
                 <% end %>
               <% end %>
               <% if followed == 1 %>
-                <div class="accountinfo"><h2>You follow this user</h2>
+                <div class="accountinfo">
+                  <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../images/gen.png"'>
+                  <h2><%= this_user.username %></h2>
+                  <p>You are viewing <%= this_user.username %>'s top 20 posts</p>
+
+                  <h2>You follow this user</h2>
                                 <h2><a href="http://postpile.herokuapp.com/users/<%= this_user.id %>/pages/1"><i class="fas fa-forward"></i> More posts</a></h2></div>
                 <% else %>
                   <div class="accountinfo">
+                    <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../images/gen.png"'>
+                    <h2><%= this_user.username %></h2>
+                    <p>You are viewing <%= this_user.username %>'s top 20 posts</p>
                     <form class="" action="/<%= @id %>/follow" method="post">
                       <input type="submit" value="Follow this user">
                     </form>
