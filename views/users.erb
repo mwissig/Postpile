@@ -19,13 +19,12 @@
               <% if session[:user].id.to_s == f.follower_id && @id.to_s == f.followed_id %>
                 <% followed = 1 %>
 
-                <% else %>
-                  <% followed = 2 %><% end %>
+              <% end %>
                 <% end %>
               <% end %>
               <% if followed == 1 %>
-                <div class="accountinfo">You follow this user</div>
-                <% elsif followed == 2 %>
+                <div class="accountinfo"><h2>You follow this user</h2></div>
+                <% else %>
                   <div class="accountinfo">
                     <form class="" action="/users/<%= @id %>/follow" method="post">
                       <input type="submit" value="Follow this user">
