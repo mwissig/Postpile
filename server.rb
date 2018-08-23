@@ -28,7 +28,7 @@ get '/top' do
 end
 
 get '/pages/:x' do
-  @x = params[:x]
+  @x = params[:x].to_i*20
   @users = User.all
   @posts = Post.all
     @comments = Comment.all
@@ -170,6 +170,11 @@ delete '/deleteme/delete' do
   @current_user.destroy
   session.clear
   redirect '/logout'
+end
+
+not_found do
+  status 404
+  erb :oops
 end
 
 require './models'

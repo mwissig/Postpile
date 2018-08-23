@@ -20,8 +20,8 @@
                 <h2><a href="/pages/
                   <%= @x.to_i+21 %>"><i class="fas fa-forward"></i> Next 20 posts</a></h2>
   </div>
-  <% @x = @x.to_i*20 %>
   <%  @pr = @posts.sort.reverse %>
+<% if @pr[@x] != nil %>
     <% @pr[@x..@x+20].each do |p| %>
     <% if p.id != nil %>
           <% post_user = User.find_by(id: p.user_id) %>
@@ -103,6 +103,7 @@
 
   <% end %>
 </marquee></div>
+<% end %>
 <% end %>
 <% end %>
 </body>
