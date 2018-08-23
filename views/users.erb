@@ -22,7 +22,7 @@
               <% end %>
                 <% end %>
               <% end %>
-              <% if followed == 1 %>
+              <% if followed == 1 || this_user.id == session[:user].id %>
                 <div class="accountinfo">
                   <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../images/gen.png"'>
                   <h2><%= this_user.username %></h2>
