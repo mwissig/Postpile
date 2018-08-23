@@ -27,6 +27,14 @@ get '/top' do
   erb :top
 end
 
+get '/pages/:x' do
+  @x = params[:x]
+  @users = User.all
+  @posts = Post.all
+    @comments = Comment.all
+  erb :pages
+end
+
 post '/' do
   post_id = params['id']
   post = Post.find_by(id: post_id)

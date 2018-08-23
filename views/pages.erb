@@ -1,12 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>PostPile</title>
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300|Hammersmith+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16"/>
+
+  </head>
+  <body>
   <% if session[:user] != nil %>
   <div class="accountinfo">
     <h1>Home</h1>
-    <h2><a href="/"><i class="fas fa-star"></i> 20 most recent posts</a></h2>
-        <h2><a href="/top"><i class="fas fa-heart"></i> 20 most loved posts</a></h2><br>
-                <h2><a href="/pages/21"><i class="fas fa-forward"></i> Next 20 posts</a></h2>
+    <h2><a href="../"><i class="fas fa-star"></i> 20 most recent posts</a></h2>
+        <h2><a href="../top"><i class="fas fa-heart"></i> 20 most loved posts</a></h2>
   </div>
   <%  @pr = @posts.sort.reverse %>
-    <% @pr[0..20].each do |p| %>
+    <% @pr[@x.to_i..@x.to_i+20].each do |p| %>
           <% post_user = User.find_by(id: p.user_id) %>
   <div class="post" id="<%= p.id %>">
     <div>
@@ -27,7 +39,7 @@
         </div>
         <div>
           Posted by:
-            <a href="users/<%= post_user.id %>"><img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="images/gen.png"'>
+            <a href="users/<%= post_user.id %>"><img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="../images/gen.png"'>
             <%= post_user.username %></a>
             at
             <%= p.created_at %>
@@ -47,7 +59,7 @@
                   <% end %>
                 <% end %>
                 <%= numComments %> comments -
-                    <a class="permalink" href="posts/<%= p.id %>">Permalink & Comments</a>
+                    <a class="permalink" href="../posts/<%= p.id %>">Permalink & Comments</a>
               </p>
             </form>
             <% else %>
@@ -61,7 +73,7 @@
                 <% end %>
               <% end %>
               <%= numComments %> comments -
-                  <a class="permalink" href="posts/<%= p.id %>">Permalink & Comments</a>
+                  <a class="permalink" href="../posts/<%= p.id %>">Permalink & Comments</a>
             </p>
             <% end %>
 
@@ -87,3 +99,5 @@
   <% end %>
 </marquee></div>
 <% end %>
+</body>
+</html>
