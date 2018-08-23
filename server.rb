@@ -20,6 +20,13 @@ get '/' do
   erb :home
 end
 
+get '/top' do
+  @users = User.all
+  @posts = Post.all
+    @comments = Comment.all
+  erb :top
+end
+
 post '/' do
   post_id = params['id']
   post = Post.find_by(id: post_id)

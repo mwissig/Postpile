@@ -4,7 +4,7 @@
     <h2><a href="/">20 most recent posts</a></h2>
         <h2><a href="/top">20 top rated posts</a></h2>
   </div>
-  <%  @pr = @posts.sort.reverse %>
+  <%  @pr = @posts.order(likes: :desc) %>
     <% @pr[0..20].each do |p| %>
           <% post_user = User.find_by(id: p.user_id) %>
   <div class="post" id="<%= p.id %>">

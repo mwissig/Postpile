@@ -54,7 +54,7 @@
 
               </div>
               <div>
-                <% @c = @comments.sort.reverse %>
+                <% @c = @comments.sort %>
                 <% @c.each do |c| %>
                 <% if c.user_id != nil %>
                   <% if p.id == c.post_id %>
