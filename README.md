@@ -4,6 +4,7 @@
 You can use the login:
 
 Username: User
+
 Password: password
 
 or create a new account. Usernames and passwords are case sensitive.
