@@ -53,7 +53,25 @@
                 <% end %>
 
               </div>
+              <div class="comments">
+                <% @comments.sort.reverse.each do |c| %>
+                  <% if post_user.id == c.user_id && p.id == c.post_id %>
+                    <% comment_user = User.find_by(id: c.user_id) %>
+                    <% if comment_user != nil %>
+                      <span class="comment"><a href="/users/<%= comment_user.id %>"><img class="commentAvatar" src="<%= comment_user.avatar_url %>" onerror='this.src="../images/gen.png"'></a>
+                      <%= c.message %><br><i>Posted by <%= comment_user.username %> at <%= c.created_at %>.</i></span><hr>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </div>
+                <% if post_user.id != session[:user].id %>
+              <form class="mainform" action="/posts/<%= p.id %>/comment" method="post">
+                <textarea type="text" placeholder='Your message' name="message"></textarea><br>
+                <input type="submit" value="Comment">
+              </form>
+                <% end %>
             </div>
+
 <% else %>
 You need to be logged in to view this post.
 <% end %>

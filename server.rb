@@ -13,7 +13,6 @@ configure :production do
   ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
 end
 
-
 get '/' do
   @users = User.all
   @posts = Post.all
@@ -29,35 +28,35 @@ post '/' do
 end
 
 get '/posts/:id' do
-   @id = params[:id]
-   @users = User.all
-   @posts = Post.all
-   erb :posts
- end
-
+  @id = params[:id]
+  @users = User.all
+  @posts = Post.all
+  @comments = Comment.all
+  erb :posts
+end
 
 delete '/posts/:id/delete' do
- 	@post = Post.find(params[:id])
- 	@post.destroy
- 	redirect '/'
- end
+  @post = Post.find(params[:id])
+  @post.destroy
+  redirect '/'
+end
 
- get '/users/:id' do
-    @id = params[:id]
-    @users = User.all
-    @posts = Post.all
-      @follows = Follow.all
-    erb :users
-  end
+get '/users/:id' do
+  @id = params[:id]
+  @users = User.all
+  @posts = Post.all
+  @follows = Follow.all
+  erb :users
+end
 
-  post '/users/:id/follow' do
-     follow = Follow.new(
-       follower_id: session[:user].id,
-       followed_id: params[:id]
-     )
-     follow.save
-     redirect '/account'
-   end
+post '/users/:id/follow' do
+  follow = Follow.new(
+    follower_id: session[:user].id,
+    followed_id: params[:id]
+  )
+  follow.save
+  redirect '/account'
+end
 
 get '/login' do
   erb :login
@@ -131,6 +130,17 @@ post '/post' do
   redirect '/'
 end
 
+post '/posts/:id/comment' do
+  @post = Post.find(params[:id])
+  comment = Comment.new(
+    post_id: @post.id,
+    user_id: session[:user].id,
+    message: params['message']
+  )
+  comment.save
+  redirect "/posts/#{@post.id}"
+end
+
 get '/deleteme' do
   erb :deleteme
 end
@@ -140,8 +150,8 @@ delete '/deleteme/delete' do
 
   @current_user = User.find(session[:user].id)
   @current_user.destroy
-    session.clear
-    redirect '/logout'
-  end
+  session.clear
+  redirect '/logout'
+end
 
 require './models'

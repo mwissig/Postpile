@@ -20,3 +20,7 @@ end
 class Follow < ActiveRecord::Base
 
 end
+
+class Comment < ActiveRecord::Base
+
+end
