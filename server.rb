@@ -66,6 +66,16 @@ get '/users/:id' do
   erb :users
 end
 
+get '/users/:id/pages/:page' do
+  @id = params[:id]
+    @page = params[:page].to_i*20
+  @users = User.all
+  @posts = Post.all
+  @follows = Follow.all
+      @comments = Comment.all
+  erb :userpages
+end
+
 post '/users/:id/follow' do
   follow = Follow.new(
     follower_id: session[:user].id,

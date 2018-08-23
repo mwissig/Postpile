@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>PostPile</title>
-    <link rel="stylesheet" type="text/css" href="../main.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
     <link href="https://fonts.googleapis.com/css?family=Assistant:300|Hammersmith+One" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="../favicon-32x32.png" sizes="32x32"/>
-    <link rel="icon" type="image/png" href="../favicon-16x16.png" sizes="16x16"/>
+    <link rel="icon" type="image/png" href="../../../favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="../../../favicon-16x16.png" sizes="16x16"/>
 
   </head>
   <body>
@@ -23,14 +23,12 @@
                 <% end %>
               <% end %>
               <% if followed == 1 %>
-                <div class="accountinfo"><h2>You follow this user</h2>
-                                <h2><a href="/pages/1"><i class="fas fa-forward"></i> More posts</a></h2></div>
+                <div class="accountinfo"><h2>You follow this user</h2></div>
                 <% else %>
                   <div class="accountinfo">
                     <form class="" action="/users/<%= @id %>/follow" method="post">
                       <input type="submit" value="Follow this user">
                     </form>
-                                    <h2><a href="/pages/1"><i class="fas fa-forward"></i> More posts</a></h2>
                   </div>
                 <% end %>
                 <div class="titlebox">
@@ -38,7 +36,8 @@
                     <%= this_user.username %>'s posts</h2>
                 </div>
                 <%  @pr = @posts.sort.reverse %>
-                  <% @pr[0..20].each do |p| %>
+                <% if @pr.length > 20 %>
+                  <% @pr[21..-1].each do |p| %>
 
                     <% if @id == p.user_id %>
                       <div class="post" id="<%= p.id %>">
@@ -60,7 +59,7 @@
                             </div>
                             <div>
                               Posted by:
-                              <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../images/gen.png"'>
+                              <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../../../images/gen.png"'>
                               <%= this_user.username %>
                               at
                               <%= p.created_at %>
@@ -80,7 +79,7 @@
                                     <% end %>
                                   <% end %>
                                   <%= numComments %> comments -
-                                      <a class="permalink" href="../posts/<%= p.id %>">Permalink & Comments</a>
+                                      <a class="permalink" href="../../../posts/<%= p.id %>">Permalink & Comments</a>
                                 </p>
                               </form>
                               <% else %>
@@ -94,7 +93,7 @@
                                   <% end %>
                                 <% end %>
                                 <%= numComments %> comments -
-                                    <a class="permalink" href="../posts/<%= p.id %>">Permalink & Comments</a>
+                                    <a class="permalink" href="../../../posts/<%= p.id %>">Permalink & Comments</a>
                               </p>
                               <% end %>
 
@@ -105,8 +104,10 @@
                           </script>
                         <% end %>
                       <% end %>
+                      <% end %>
                     <% else %>
                       You need to be logged in to view this post.
                     <% end %>
-                  </body>
-                </html>
+
+</body>
+</html>
