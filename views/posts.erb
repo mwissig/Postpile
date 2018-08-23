@@ -65,7 +65,7 @@
                   <% end %>
                 </div>
                 <% if post_user.id != session[:user].id %>
-              <form class="mainform" action="/posts/<%= p.id %>/comment" method="post">
+              <form class="commentform" action="/posts/<%= p.id %>/comment" method="post">
                 <textarea type="text" placeholder='Your message' name="message"></textarea><br>
                 <input type="submit" value="Comment">
               </form>

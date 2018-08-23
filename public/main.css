@@ -269,6 +269,14 @@ textarea {
 .mainform input {
       width: 50vw;
     }
+    .commentform {
+      margin: 5px;
+      text-align: center;
+      font-size: 12px;
+    }
+    .commentform input {
+          width: 40vw;
+        }
     .nameinput {
       width: 23.3vw !important;
     }
@@ -326,6 +334,9 @@ and (max-device-width : 1024px) {
   .mainform input {
         width: 90vw;
   }
+  .commentform input {
+        width: 80vw;
+      }
   .nameinput {
     width: 39vw !important;
   }
