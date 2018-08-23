@@ -40,7 +40,7 @@ post '/' do
   post = Post.find_by(id: post_id)
   post.likes += 1
   post.save
-  redirect '/'
+  redirect back
 end
 
 get '/posts/:id' do
@@ -72,7 +72,7 @@ post '/users/:id/follow' do
     followed_id: params[:id]
   )
   follow.save
-  redirect '/account'
+  redirect back
 end
 
 get '/login' do
@@ -94,7 +94,7 @@ post '/signup' do
     birthday: params['birthday']
   )
   user.save
-  redirect '/'
+  redirect '/login'
 end
 
 post '/login' do
@@ -106,7 +106,7 @@ post '/login' do
     redirect :account
   else
     p 'Invalid credentials'
-    redirect '/'
+    redirect back
    end
 end
 
@@ -123,7 +123,7 @@ post '/account' do
   user = User.find_by(id: session[:user].id)
   user.avatar_url = avatar_url
   user.save
-  redirect '/'
+  redirect back
 end
 
 get '/logout' do
