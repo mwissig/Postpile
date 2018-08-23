@@ -16,6 +16,7 @@ end
 get '/' do
   @users = User.all
   @posts = Post.all
+    @comments = Comment.all
   erb :home
 end
 
@@ -97,6 +98,7 @@ get '/account' do
   @users = User.all
   @posts = Post.all
   @follows = Follow.all
+    @comments = Comment.all
   erb :account
 end
 

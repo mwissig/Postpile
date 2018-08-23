@@ -84,10 +84,17 @@
                         <%= p.created_at %>
                       </div>
                       <div>
-                        <p>
+                        <p class ="likesComments">
                           <i class="fas fa-heart"></i>
-                          <%= p.likes %>
-                          <a href="posts/<%= p.id %>">Permalink</a>
+                          <%= p.likes %> loves -
+                          <% numComments = 0 %>
+                          <% @comments.each do |c| %>
+                            <% if c.post_id == p.id %>
+                            <% numComments += 1 %>
+                            <% end %>
+                          <% end %>
+                          <%= numComments %> comments -
+                              <a class="permalink" href="posts/<%= p.id %>">Permalink & Comments</a>
                         </p>
                       </div>
                     </div>
