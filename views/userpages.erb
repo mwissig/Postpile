@@ -17,110 +17,114 @@
           <% if session[:user].id != this_user.id %>
             <% @follows.each do |f| %>
               <% if session[:user].id.to_s == f.follower_id && @id.to_s == f.followed_id %>
-                <% followed = 1 %>
-
+                <% followed = 1 %><% end %>
               <% end %>
-                <% end %>
-              <% end %>
-              <% if followed == 1 %>
-                <div class="accountinfo">
-                  <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../../../images/gen.png"'>
-                  <h2><%= this_user.username %></h2>
-                  <p>You are viewing <%= this_user.username %>'s posts.</p>
-                  <% if this_user.id == session[:user].id %>
+            <% end %>
+            <% if followed == 1 || this_user.id == session[:user].id %>
+              <div class="accountinfo">
+                <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../../../images/gen.png"'>
+                <h2><%= this_user.username %></h2>
+                <p>You are viewing
+                  <%= this_user.username %>'s posts.</p>
+                <% if this_user.id == session[:user].id %>
                   <h2>This is you.</h2>
-                  <p><a href="../../../account">Go to your account page</a></p>
-                  <% else %>
-                                    <h2>You follow this user</h2>
-                                    <% end %>
-                  <h2>You follow this user</h2></div>
+                  <p>
+                    <a href="../../../account">Go to your account page</a>
+                  </p>
                 <% else %>
-                  <div class="accountinfo">
-                    <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../../../images/gen.png"'>
-                    <h2><%= this_user.username %></h2>
-                    <p>You are viewing <%= this_user.username %>'s posts.</p>
-                    <form class="" action="/users/<%= @id %>/follow" method="post">
-                      <input type="submit" value="Follow this user">
-                    </form>
-                  </div>
+                  <h2>You follow this user</h2>
                 <% end %>
-                <div class="titlebox">
-                  <h2>
-                    <%= this_user.username %>'s posts</h2>
-                </div>
-                <%  @pr = @posts.sort.reverse %>
-                <% if @pr.length > 20 %>
-                  <% @pr[21..-1].each do |p| %>
+              </div>
+            <% else %>
+              <div class="accountinfo">
+                <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../../../images/gen.png"'>
+                <h2><%= this_user.username %></h2>
+                <p>You are viewing
+                  <%= this_user.username %>'s posts.</p>
+                <form class="" action="/users/<%= @id %>/follow" method="post">
+                  <input type="submit" value="Follow this user">
+                </form>
+              </div>
+            <% end %>
+            <div class="titlebox">
+              <h2>
+                <%= this_user.username %>'s posts</h2>
+            </div>
+            <%  @pr = @posts.sort.reverse %>
+              <% if @pr.length > 20 %>
+                <% @pr[21..-1].each do |p| %>
 
-                    <% if @id == p.user_id %>
-                      <div class="post" id="<%= p.id %>">
-                        <div>
-                          <h2><%= p.title %>
-                            <% if session[:user].id == this_user.id %>
-                              (your post)
-                            <% end %>
-                          </h2>
-                        </div>
-                        <% if p.image_url != "" %>
-                          <% @height = 400 %>
-                          <% else %>
-                            <% @height = 0 %><% end %>
-                            <div style="background-image: url('<%= p.image_url %>'); height: <%= @height %>px;"></div>
-                            <div>
-                              <p>
-                                <%= p.body %></p>
-                            </div>
-                            <div>
-                              Posted by:
-                              <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../../../images/gen.png"'>
-                              <%= this_user.username %>
-                              at
-                              <%= p.created_at %>
-                            </div>
-                            <div>
-                              <% if p.user_id.to_i != session[:user].id.to_i %>
+                  <% if @id == p.user_id %>
+                    <div class="post" id="<%= p.id %>">
+                      <div>
+                        <h2><%= p.title %>
+                          <% if session[:user].id == this_user.id %>
+                            (your post)
+                          <% end %>
+                        </h2>
+                      </div>
+                      <% if p.image_url != "" %>
+                        <% @height = 400 %>
+                        <% else %>
+                          <% @height = 0 %><% end %>
+                          <div style="background-image: url('<%= p.image_url %>'); height: <%= @height %>px;"></div>
+                          <div>
+                            <p>
+                              <%= p.body %></p>
+                          </div>
+                          <div>
+                            Posted by:
+                            <img class="avatar" src="<%= this_user.avatar_url %>" onerror='this.src="../../../images/gen.png"'>
+                            <%= this_user.username %>
+                            at
+                            <%= p.created_at %>
+                          </div>
+                          <div>
+                            <% if p.user_id.to_i != session[:user].id.to_i %>
                               <form style="display: inline;" class="like" action="/" method="post">
                                 <input type="hidden" name="id" value="<%= p.id %>">
                                 <input type="submit" onclick="hide()" value="I love this">
-                                <span class ="likesComments">
+                                <span class="likesComments">
                                   <i class="fas fa-heart"></i>
-                                  <%= p.likes %> loves -
+                                  <%= p.likes %>
+                                  loves -
                                   <% numComments = 0 %>
-                                  <% @comments.each do |c| %>
-                                    <% if c.post_id == p.id %>
-                                    <% numComments += 1 %>
-                                    <% end %>
-                                  <% end %>
-                                  <%= numComments %> comments -
+                                    <% @comments.each do |c| %>
+                                      <% if c.post_id == p.id %>
+                                        <% numComments += 1 %><% end %>
+                                      <% end %>
+                                      <%= numComments %>
+                                      comments -
                                       <a class="permalink" href="../../../posts/<%= p.id %>">Permalink & Comments</a>
-                                </p>
-                              </form>
-                              <% else %>
-                              <p class ="likesComments">
-                                <i class="fas fa-heart"></i>
-                                <%= p.likes %> loves -
-                                <% numComments = 0 %>
-                                <% @comments.each do |c| %>
-                                  <% if c.post_id == p.id %>
-                                  <% numComments += 1 %>
-                                  <% end %>
-                                <% end %>
-                                <%= numComments %> comments -
-                                    <a class="permalink" href="../../../posts/<%= p.id %>">Permalink & Comments</a>
-                              </p>
+                                    </p>
+                                  </form>
+                                <% else %>
+                                  <p class="likesComments">
+                                    <i class="fas fa-heart"></i>
+                                    <%= p.likes %>
+                                    loves -
+                                    <% numComments = 0 %>
+                                      <% @comments.each do |c| %>
+                                        <% if c.post_id == p.id %>
+                                          <% numComments += 1 %><% end %>
+                                        <% end %>
+                                        <%= numComments %>
+                                        comments -
+                                        <a class="permalink" href="../../../posts/<%= p.id %>">Permalink & Comments</a>
+                                      </p>
+                                    <% end %>
+
+                                  </div>
+                                </div>
+                                <script>
+                                  var x = <%= @posts.reverse.first.id %>;
+                                </script>
                               <% end %>
-
-                            </div>
-                          </div>
-                          <script>
-                            var x = <%= @posts.reverse.first.id %>;
-                          </script>
+                            <% end %>
+                          <% end %>
+                        <% else %>
+                          You need to be logged in to view this post.
                         <% end %>
-                      <% end %>
-                      <% end %>
-                    <% else %>
-                      You need to be logged in to view this post.
-                    <% end %>
 
-</body>
-</html>
+                      </body>
+                    </html>
