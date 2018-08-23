@@ -47,6 +47,7 @@ get '/users/:id' do
   @users = User.all
   @posts = Post.all
   @follows = Follow.all
+      @comments = Comment.all
   erb :users
 end
 
