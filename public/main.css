@@ -258,10 +258,13 @@ grid-template-columns: repeat(4, 60px);
    width: auto;
    opacity: .8;
 }
-textarea {
+.mainform textarea {
   width: 50vw;
   height: 20vh;
 }
+.commentform textarea {
+      width: 40vw;
+    }
 .mainform {
   margin: 5px;
   text-align: center;
@@ -337,10 +340,13 @@ and (max-device-width : 1024px) {
   .commentform input {
         width: 80vw;
       }
+      .commentform textarea {
+            width: 80vw;
+          }
   .nameinput {
     width: 39vw !important;
   }
-  textarea {
+  .mainform textarea {
     width: 90vw;
     height: 50vh;
   }
