@@ -76,6 +76,14 @@ get '/users/:id/pages/:page' do
   erb :userpages
 end
 
+get '/inbox' do
+  @users = User.all
+  @posts = Post.all
+  @follows = Follow.all
+  @comments = Comment.all
+  erb :mypms
+end
+
 post '/follow/:id' do
   follow = Follow.new(
     follower_id: session[:user].id,

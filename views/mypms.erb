@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>PostPile</title>
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300|Hammersmith+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="../../favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="../../favicon-16x16.png" sizes="16x16"/>
+
+  </head>
+  <body>
+    <% if session[:user] != nil %>
+      <div class="titlebox">
+        <h1>You have PMs from:</h1>
+      </div>
+      <div class="pmbox">
+        <% if @pms != nil %>
+          <% @p = @pms.sort.reverse %>
+            <% @names = [] %>
+              <% @p.each do |p| %>
+                <% @pm_sender = User.find_by(id: p.sender_id) %>
+                  <% if p.recipient_id == session[:user].id && p.sender_id != nil %>
+                    <% @names.push "<a href='/users/#{@pm_sender.id}/pm'>#{@pm_sender.username}</a><br>" %>
+                  <% end %>
+                <% end %>
+                <% @names.uniq.each do |n| %>
+              <%= n %>
+                <% end %>
+              </div>
+          <% end %>
+        <% else %>
+          You must be logged in to post.
+        <% end %>
+      </body>
+    </html>
