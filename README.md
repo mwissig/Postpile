@@ -28,5 +28,5 @@ The user's account page displays their account information, their 20 most recent
 Each post contains a comment box where users can respond to posts.
 ![Post comments](https://raw.githubusercontent.com/mwissig/Postpile/master/public/images/Opera%20Snapshot_2018-08-22_205733_postpile.herokuapp.com.png)
 
-Users can send other users private messages.
+Users can send other users private messages. Each user's PM page will show the conversation between that user and the currently logged in user. The inbox shows a list of all users that have sent PMs to the user.
 ![PM page](https://github.com/mwissig/Postpile/blob/master/public/images/Opera%20Snapshot_2018-08-23_225538_postpile.herokuapp.com.png?raw=true)
