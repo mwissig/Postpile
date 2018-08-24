@@ -13,7 +13,8 @@
   <body>
     <% if session[:user] != nil %>
       <div class="titlebox">
-        <h1>Write a pm</h1>
+        <% @this_user = User.find_by(id: @id) %>
+        <h1>Write a private message to <%= @this_user.username %></h1>
       </div>
       <div class="pmbox">
         <% if @pms != nil %>
