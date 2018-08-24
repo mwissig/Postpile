@@ -16,6 +16,7 @@
         <h1>Write a pm</h1>
       </div>
       <div class="pmbox">
+        <% if @pms != nil %>
         <% @p = @pms.sort %>
           <% @p.each do |p| %>
 
@@ -43,6 +44,7 @@
               <% end %>
 
           </div>
+          <% end %>
           <form class="commentform" action="/users/<%= @id %>/pm" method="post">
             <textarea type="text" placeholder='Your message' name="message"></textarea><br>
             <input type="submit" value="Send">
