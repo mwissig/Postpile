@@ -22,7 +22,7 @@ Users can create and log in to accounts.
 ![Sign up page](https://raw.githubusercontent.com/mwissig/Postpile/master/public/images/Opera%20Snapshot_2018-08-22_205451_postpile.herokuapp.com.png)
 ![Login page](https://raw.githubusercontent.com/mwissig/Postpile/master/public/images/Opera%20Snapshot_2018-08-22_205514_postpile.herokuapp.com.png)
 
-The user's account page displays their account information, their 20 most recent posts, their friends' avatars with links to their pages, and a form to upload a new avatar.
+The user's account page displays their account information, their 20 most recent posts, their friends' avatars with links to their pages, and a form to link to a new avatar.
 ![Account page](https://raw.githubusercontent.com/mwissig/Postpile/master/public/images/Opera%20Snapshot_2018-08-22_205537_postpile.herokuapp.com.png)
 
 Each post contains a comment box where users can respond to posts.
