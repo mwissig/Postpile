@@ -78,9 +78,7 @@ end
 
 get '/inbox' do
   @users = User.all
-  @posts = Post.all
-  @follows = Follow.all
-  @comments = Comment.all
+    @pms = Pm.all
   erb :mypms
 end
 

@@ -15,9 +15,10 @@
       <div class="titlebox">
         <h1>You have PMs from:</h1>
       </div>
-      <div class="pmbox">
-        <% if @pms != nil %>
+      <br>
+      <div class="pmbox" style="text-align: center; background-color: rgb(6, 0, 14); border-radius: 5px;">
           <% @p = @pms.sort.reverse %>
+          <% p @p %>
             <% @names = [] %>
               <% @p.each do |p| %>
                 <% @pm_sender = User.find_by(id: p.sender_id) %>
@@ -27,9 +28,8 @@
                 <% end %>
                 <% @names.uniq.each do |n| %>
               <%= n %>
-                <% end %>
+                  <% end %>
               </div>
-          <% end %>
         <% else %>
           You must be logged in to post.
         <% end %>
