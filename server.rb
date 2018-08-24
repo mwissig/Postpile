@@ -142,6 +142,7 @@ get '/account' do
   @posts = Post.all
   @follows = Follow.all
     @comments = Comment.all
+      @pms = Pm.all
   erb :account
 end
 
