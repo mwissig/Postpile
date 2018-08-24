@@ -13,7 +13,7 @@ A social media site made with Sinatra.
 Users have the ability to create accounts, log in, and create posts.
 They can also delete their own posts and accounts.
 
-They also have the ability to follow other users, vote their posts up, and comment on posts.
+They also have the ability to follow other users, vote their posts up, comment on posts, and send each other private messages.
 
 When not logged in, the front page shows a marquee of the images from the latest 20 posts, allowing users to see a little bit of the content before they sign up.
 ![Front page](https://raw.githubusercontent.com/mwissig/Postpile/master/public/images/Opera%20Snapshot_2018-08-22_205407_postpile.herokuapp.com.png)
@@ -27,3 +27,6 @@ The user's account page displays their account information, their 20 most recent
 
 Each post contains a comment box where users can respond to posts.
 ![Post comments](https://raw.githubusercontent.com/mwissig/Postpile/master/public/images/Opera%20Snapshot_2018-08-22_205733_postpile.herokuapp.com.png)
+
+Users can send other users private messages.
+![PM page](https://github.com/mwissig/Postpile/blob/master/public/images/Opera%20Snapshot_2018-08-23_225538_postpile.herokuapp.com.png?raw=true)
