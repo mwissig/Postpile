@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>PostPile</title>
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    <link href="https://fonts.googleapis.com/css?family=Assistant:300|Hammersmith+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="../../favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="../../favicon-16x16.png" sizes="16x16"/>
+
+  </head>
+  <body>
+    <% if session[:user] != nil %>
+      <div class="titlebox">
+        <h1>Write a pm</h1>
+      </div>
+      <div class="pmbox">
+        <% @p = @pms.sort %>
+          <% @p.each do |p| %>
+
+            <% @pm_sender = User.find_by(id: p.sender_id) %>
+              <% if p.sender_id == session[:user].id && p.recipient_id == @id.to_i%>
+
+                <div class="yourpm" style="background: rgba(184, 250, 194, 1); background: linear-gradient(to right, transparent 0%, rgba(184, 250, 194, 1) 100%); color: black; text-align: right; border-radius: 5px; padding: 3px; margin: 3px;">
+                  <a href="/users/<%= @pm_sender.id %>"><%= @pm_sender.username %></a>:
+                  <%= p.message %><br>
+                  <i>@
+                    <%= p.created_at %>.</i>
+                  </div>
+
+                <% elsif p.sender_id == @id.to_i && p.recipient_id == session[:user].id && @pm_sender.id != nil %>
+
+                  <div class="theirpm" style="background: rgba(250, 194, 255, 1);  background: linear-gradient(to left, transparent 0%, rgba(250, 194, 255, 1) 100%); color: black; text-align: left; border-radius: 5px; padding: 3px; margin: 3px;">
+                    <a href="/users/<%= @pm_sender.id %>"><%= @pm_sender.username %></a>:
+                    <%= p.message %><br>
+                    <i>@
+                      <%= p.created_at %>.</i>
+                  </div>
+
+                <% end %>
+
+              <% end %>
+
+          </div>
+          <form class="commentform" action="/users/<%= @id %>/pm" method="post">
+            <textarea type="text" placeholder='Your message' name="message"></textarea><br>
+            <input type="submit" value="Send">
+          </form>
+        <% else %>
+          You must be logged in to post.
+        <% end %>
+      </body>
+    </html>

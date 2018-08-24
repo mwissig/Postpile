@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_22_232622) do
+ActiveRecord::Schema.define(version: 2018_08_24_000425) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 2018_08_22_232622) do
   create_table "follows", force: :cascade do |t|
     t.string "follower_id"
     t.string "followed_id"
+  end
+
+  create_table "pms", force: :cascade do |t|
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.string "message"
+    t.datetime "created_at"
   end
 
   create_table "posts", force: :cascade do |t|

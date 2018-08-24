@@ -11,96 +11,105 @@
 
   </head>
   <body>
-      <% if session[:user] != nil %>
+    <% if session[:user] != nil %>
       <% p = @posts.find_by(id: @id) %>
         <% post_user = User.find_by(id: p.user_id) %>
-      <% if session[:user].id == post_user.id %><div class="accountinfo">
-<form class="floatingform" action="/posts/<%= p.id %>/delete" method="post">
-  <h2><%= p.title %></h2>
-  <p>Delete this post?</p>
-  <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="delete">
-</form>
-</div>
-      <% end %>
-
-      <div class="post" id="<%= p.id %>">
-        <div>
-          <h2><%= p.title %></h2>
-
-        </div>
-        <% if p.image_url != "" %>
-          <% @height = 400 %>
-          <% else %>
-            <% @height = 0 %><% end %>
-            <div style="background-image: url('<%= p.image_url %>'); height: <%= @height %>px;"></div>
-            <div>
-              <p>
-                <%= p.body %></p>
-            </div>
-            <div>
-              Posted by:
-                <a href="../users/<%= post_user.id %>"><img class="avatar" src="<%= post_user.avatar_url %>"  onerror='this.src="../images/gen.png"'>
-                <%= post_user.username %></a>
-                at
-                <%= p.created_at %>
-              </div>
-              <div>
-                <% if post_user.id != session[:user].id %>
-                <form style="display: inline;" class="like" action="../" method="post">
-                  <input type="hidden" name="id" value="<%= p.id %>">
-                  <input type="submit" onclick="hide()" value="I love this">
-                  <span class ="likesComments">
-                    <i class="fas fa-heart"></i>
-                    <%= p.likes %> loves -
-                    <% numComments = 0 %>
-                    <% @comments.each do |c| %>
-                      <% if c.post_id == p.id %>
-                      <% numComments += 1 %>
-                      <% end %>
-                    <% end %>
-                    <%= numComments %> comments -
-
-                  </p>
-                </form>
-                <% else %>
-                <p class ="likesComments">
-                  <i class="fas fa-heart"></i>
-                  <%= p.likes %> loves -
-                  <% numComments = 0 %>
-                  <% @comments.each do |c| %>
-                    <% if c.post_id == p.id %>
-                    <% numComments += 1 %>
-                    <% end %>
-                  <% end %>
-                  <%= numComments %> comments -
-                      
-                </p>
-                <% end %>
-
-              </div>
-              <div>
-                <% @c = @comments.sort %>
-                <% @c.each do |c| %>
-                <% if c.user_id != nil %>
-                  <% if p.id == c.post_id %>
-                    <% @comment_user = User.find_by(id: c.user_id) %>
-                    <% if @comment_user != nil %>
-                      <span class="comment"><a href="/users/<%= @comment_user.id %>"><img class="commentAvatar" src="<%= @comment_user.avatar_url %>" onerror='this.src="../images/gen.png"'></a>
-                      <%= c.message %><br><i>Posted by <%= @comment_user.username %> at <%= c.created_at %>.</i></span><hr>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                                    <% end %>
-                </div>
-              <form class="commentform" action="/posts/<%= p.id %>/comment" method="post">
-                <textarea type="text" placeholder='Your message' name="message"></textarea><br>
-                <input type="submit" value="Comment">
+          <% if session[:user].id == post_user.id %>
+            <div class="accountinfo">
+              <form class="floatingform" action="/posts/<%= p.id %>/delete" method="post">
+                <h2><%= p.title %></h2>
+                <p>Delete this post?</p>
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="delete">
               </form>
             </div>
+          <% end %>
 
-<% else %>
-You need to be logged in to view this post.
-<% end %>
-      </body>
-    </html>
+          <div class="post" id="<%= p.id %>">
+            <div>
+              <h2><%= p.title %></h2>
+
+            </div>
+            <% if p.image_url != "" %>
+              <% @height = 400 %>
+              <% else %>
+                <% @height = 0 %><% end %>
+                <div style="background-image: url('<%= p.image_url %>'); height: <%= @height %>px;"></div>
+                <div>
+                  <p>
+                    <%= p.body %></p>
+                </div>
+                <div>
+                  Posted by:
+                  <a href="../users/<%= post_user.id %>"><img class="avatar" src="<%= post_user.avatar_url %>" onerror='this.src="../images/gen.png"'>
+                    <%= post_user.username %></a>
+                  at
+                  <%= p.created_at %>
+                </div>
+                <div>
+                  <% if post_user.id != session[:user].id %>
+                    <form style="display: inline;" class="like" action="../" method="post">
+                      <input type="hidden" name="id" value="<%= p.id %>">
+                      <input type="submit" onclick="hide()" value="I love this">
+                      <span class="likesComments">
+                        <i class="fas fa-heart"></i>
+                        <%= p.likes %>
+                        loves -
+                        <% numComments = 0 %>
+                          <% @comments.each do |c| %>
+                            <% if c.post_id == p.id %>
+                              <% numComments += 1 %><% end %>
+                            <% end %>
+                            <%= numComments %>
+                            comments -
+
+                          </p>
+                        </form>
+                      <% else %>
+                        <p class="likesComments">
+                          <i class="fas fa-heart"></i>
+                          <%= p.likes %>
+                          loves -
+                          <% numComments = 0 %>
+                            <% @comments.each do |c| %>
+                              <% if c.post_id == p.id %>
+                                <% numComments += 1 %><% end %>
+                              <% end %>
+                              <%= numComments %>
+                              comments -
+
+                            </p>
+                          <% end %>
+
+                        </div>
+                        <div>
+                          <% @c = @comments.sort %>
+                            <% @c.each do |c| %>
+                              <% if c.user_id != nil %>
+                                <% if p.id == c.post_id %>
+                                  <% @comment_user = User.find_by(id: c.user_id) %>
+                                    <% if @comment_user != nil %>
+                                      <span class="comment">
+                                        <a href="/users/<%= @comment_user.id %>"><img class="commentAvatar" src="<%= @comment_user.avatar_url %>" onerror='this.src="../images/gen.png"'></a>
+                                        <%= c.message %><br>
+                                        <i>Posted by
+                                          <%= @comment_user.username %>
+                                          at
+                                          <%= c.created_at %>.</i>
+                                      </span><hr>
+                                    <% end %>
+                                  <% end %>
+                                <% end %>
+                              <% end %>
+                            </div>
+                            <form class="commentform" action="/posts/<%= p.id %>/comment" method="post">
+                              <textarea type="text" placeholder='Your message' name="message"></textarea><br>
+                              <input type="submit" value="Comment">
+                            </form>
+                          </div>
+
+                        <% else %>
+                          You need to be logged in to view this post.
+                        <% end %>
+                      </body>
+                    </html>

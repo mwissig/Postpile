@@ -85,6 +85,23 @@ post '/users/:id/follow' do
   redirect back
 end
 
+get '/users/:id/pm' do
+    @id = params[:id]
+    @pms = Pm.all
+  erb :pm
+end
+
+post '/users/:id/pm' do
+  @id = params[:id]
+  pm = Pm.new(
+    sender_id: session[:user].id,
+    recipient_id: params[:id],
+    message: params[:message]
+  )
+  pm.save
+  redirect back
+end
+
 get '/login' do
   erb :login
 end

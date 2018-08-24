@@ -24,3 +24,7 @@ end
 class Comment < ActiveRecord::Base
 
 end
+
+class Pm < ActiveRecord::Base
+
+end

@@ -24,7 +24,6 @@ input {
   box-shadow: 1px 1px .5px black;
   border: none;
 }
-
 textarea {
   padding: 5px 15px;
   background-color: white;
@@ -300,7 +299,6 @@ grid-template-columns: repeat(4, 60px);
   .accountinfo input {
     max-width: 18vw;
   }
-}
 @media only screen
 and (min-device-height : 1000px)
 and (max-device-width : 1024px) {

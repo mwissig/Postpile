@@ -32,6 +32,7 @@
 <p><a href="../account">Go to your account page</a></p>
 <% else %>
                   <h2>You follow this user</h2>
+                  <h2><a href="http://postpile.herokuapp.com/users/<%= this_user.id %>/pm">PM this user</a></h2>
                   <% end %>
                                 <h2><a href="http://postpile.herokuapp.com/users/<%= this_user.id %>/pages/1"><i class="fas fa-forward"></i> More posts</a></h2></div>
                 <% else %>
