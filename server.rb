@@ -76,7 +76,7 @@ get '/users/:id/pages/:page' do
   erb :userpages
 end
 
-post '/users/:id/follow' do
+post '/follow/:id' do
   follow = Follow.new(
     follower_id: session[:user].id,
     followed_id: params[:id]
